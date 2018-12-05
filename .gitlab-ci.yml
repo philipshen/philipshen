@@ -1,0 +1,16 @@
+image: node:latest
+
+# This folder is cached between builds
+cache:
+  paths:
+    - node_modules/
+
+pages:
+  script:
+    - npm install
+    - ./node_modules/.bin/gatsby build --prefix-paths
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
