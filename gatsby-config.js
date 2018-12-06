@@ -1,10 +1,17 @@
 module.exports = {
   pathPrefix: `/philipshen`, // Needed for Gitlab pages' custom URL. Eventually, w/ custom URL, remove this
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Philip Shen',
   },
   plugins: [
+    `gatsby-plugin-flow`,
     'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography.js`
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
