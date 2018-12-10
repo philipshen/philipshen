@@ -11,28 +11,63 @@ import Color from '../styles/color'
 import { media } from '../styles/style-utils'
 
 const HeaderContainer = styled.div`
-  background-color: white;
   display: flex;
-  align-items: center;
+  background-color: white;
   width: 100%;
+  background-color: white;
 
+  /* For some reason, these styles aren't applied if directly set to MenuButton... */
   .menuButton {
+    display: none;
     color: ${Color.dark_text};
     margin-left: 12px;
-    display: none;
     height: 40px;
     width: 40px;
+    transition: transform 200ms;
+  }
+
+  .headerFooting {
+    display: none;
+    flex: 1 !important;
+    width: 100%;
+    align-items: flex-end;
+    min-height: 40px;
+  }
+
+  .headerDivider {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 8px;
+    background-color: ${Color.primary_color};
   }
 
   ${media.phone`
-    height: 44px;
-
     /* Collapse the nav bar */
+    h5 {
+      font-weight: normal;
+    }
+
     .headerButton {
-      display: none;
+      flex: 0.15;
+      margin-left: 16px;
+    }
+
+    .logo {
+      margin-top: 12px;
+    }
+
+    .headerFooting {
+      display: flex;
     }
 
     .menuButton {
+      display: block;
+    }
+
+    .headerDivider {
       display: block;
     }
   `};
@@ -48,7 +83,46 @@ const HeaderContainer = styled.div`
     padding-left: 24px;
     padding-top: 16px;
   `}
+`
 
+// Just calc this here for convenience
+const HeaderButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  background-color: white;
+  z-index: 2;
+
+  ${media.phone`
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 100%;
+      width: 60%;
+      padding-right: 32px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      transition: transform 300ms ease-in-out;
+      transform: ${props => props.visible && `translate(100%)`};
+  `}
+`
+
+const Overlay = styled.div`
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  opacity: 0.2;
+  z-index: 1;
+
+  /* Only ever visible on phone, with collapsing header */
+  ${media.phone`
+    display: ${props => props.visible ? 'block' : 'none'};
+  `}
 `
 
 const HeaderButton = styled(Link)`
@@ -73,15 +147,13 @@ const HeaderButton = styled(Link)`
   }
 `
 
-const HeaderLogo = styled(Logo)`
-  background-color: red;
-`
-
 // Most styles are in the "HeaderContainer" styles. Didn't work when put here.
 const MenuButton = styled(Menu)`
   :hover {
     opacity: 0.8;
   }
+
+  transform: ${props => props.buttonsVisible ? 'rotate(180deg)' : 'rotate(0deg)'};
 `
 
 interface HeaderButtonData {
@@ -102,7 +174,7 @@ class Header extends React.Component {
     ]
 
     this.state = {
-      collapsed: true
+      visible: false // Only going to be applicable to phones
     }
   }
 
@@ -110,29 +182,52 @@ class Header extends React.Component {
     return (
       <HeaderContainer>
         {/* COLLAPSED HEADER ON MOBILE */}
-        <MenuButton className={'menuButton'} />
+        <MenuButton
+          className={'menuButton'}
+          onClick={this.toggleHeaderVisibility.bind(this)}
+          buttonsVisible={this.state.visible}
+        />
+        <Overlay
+          visible={this.state.visible}
+          onClick={() => this.setState({visible: false})}
+        />
         {/* EXPANDED HEADER ON DESKTOP */}
-        <HeaderButton
-          to="/"
-          className={'headerButton'}
-        >
-          <HeaderLogo />
-        </HeaderButton>
-        {
-          this.buttons.map((buttonData: HeaderButtonData) => {
-            return (
-              <HeaderButton
-                key={buttonData.name}
-                to={buttonData.to}
-                className={'headerButton'}
-              >
-                <h5>{buttonData.name}</h5>
-              </HeaderButton>
-            )
-          })
-        }
+        <HeaderButtonsContainer visible={this.state.visible}>
+          <HeaderButton
+            to="/"
+            className={'headerButton logo'}
+          >
+            <Logo />
+          </HeaderButton>
+          {
+            this.buttons.map((buttonData: HeaderButtonData) => {
+              return (
+                <HeaderButton
+                  key={buttonData.name}
+                  to={buttonData.to}
+                  className={'headerButton'}
+                >
+                  <h5>{buttonData.name}</h5>
+                </HeaderButton>
+              )
+            })
+          }
+          <div className={'headerFooting headerButton'}>
+            <HeaderButton
+            >
+              <h5>
+                Contact Me
+              </h5>
+            </HeaderButton>
+          </div>
+          <div className={'headerDivider'} />
+        </HeaderButtonsContainer>
       </HeaderContainer>
     )
+  }
+
+  toggleHeaderVisibility() {
+    this.setState(({ visible }) => ({visible: !visible}))
   }
 
 }
