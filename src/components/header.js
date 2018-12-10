@@ -12,9 +12,9 @@ import { media } from '../styles/style-utils'
 
 const HeaderContainer = styled.div`
   display: flex;
+  position: fixed;
   background-color: white;
   width: 100%;
-  background-color: white;
 
   /* For some reason, these styles aren't applied if directly set to MenuButton... */
   .menuButton {
@@ -192,7 +192,9 @@ class Header extends React.Component {
           onClick={() => this.setState({visible: false})}
         />
         {/* EXPANDED HEADER ON DESKTOP */}
-        <HeaderButtonsContainer visible={this.state.visible}>
+        <HeaderButtonsContainer
+          visible={this.state.visible}  
+        >
           <HeaderButton
             to="/"
             className={'headerButton logo'}
@@ -233,11 +235,11 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string
 }
 
 Header.defaultProps = {
-  title: '',
+  title: ''
 }
 
 export default Header
