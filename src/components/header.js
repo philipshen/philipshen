@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+import disableScroll from 'disable-scroll'
 
 import Logo from './logo'
 import { Menu } from '@material-ui/icons'
@@ -12,14 +13,13 @@ import { media } from '../styles/style-utils'
 
 const HeaderContainer = styled.div`
   display: flex;
-  position: fixed;
   background-color: white;
   width: 100%;
+  z-index: 99;
 
   /* For some reason, these styles aren't applied if directly set to MenuButton... */
   .menuButton {
     display: none;
-    color: ${Color.dark_text};
     margin-left: 12px;
     height: 40px;
     width: 40px;
@@ -57,6 +57,7 @@ const HeaderContainer = styled.div`
 
     .logo {
       margin-top: 12px;
+      margin-bottom: 12px;
     }
 
     .headerFooting {
@@ -78,7 +79,7 @@ const HeaderContainer = styled.div`
     padding-top: 16px;
   `}
 
-  ${media.normal`
+  ${media.computer`
     height: 72px;
     padding-left: 24px;
     padding-top: 16px;
@@ -93,10 +94,9 @@ const HeaderButtonsContainer = styled.div`
   z-index: 2;
 
   ${media.phone`
-      position: fixed;
-      top: 0;
-      bottom: 0;
+      position: fixed !important;
       right: 100%;
+      height: 100vh;
       width: 60%;
       padding-right: 32px;
       display: inline-flex;
@@ -111,10 +111,8 @@ const HeaderButtonsContainer = styled.div`
 const Overlay = styled.div`
   display: none;
   position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  height: 100vh;
+  width: 100vw;
   background-color: black;
   opacity: 0.2;
   z-index: 1;
@@ -134,7 +132,7 @@ const HeaderButton = styled(Link)`
     margin-right: 24px;
   `}
 
-  ${media.normal`
+  ${media.computer`
     margin-right: 36px;
   `}
 
@@ -189,7 +187,7 @@ class Header extends React.Component {
         />
         <Overlay
           visible={this.state.visible}
-          onClick={() => this.setState({visible: false})}
+          onClick={this.toggleHeaderVisibility.bind(this)}
         />
         {/* EXPANDED HEADER ON DESKTOP */}
         <HeaderButtonsContainer
@@ -229,7 +227,16 @@ class Header extends React.Component {
   }
 
   toggleHeaderVisibility() {
-    this.setState(({ visible }) => ({visible: !visible}))
+    this.setState(({ visible }) => {
+      if (visible)
+        disableScroll.off()
+      else
+        disableScroll.on()
+
+      return {
+        visible: !visible
+      }
+    })
   }
 
 }

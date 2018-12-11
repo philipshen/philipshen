@@ -16,13 +16,28 @@ export const media = {
       ${css(...args)}
     }
   `,
-  normal: (...args) => css`
+  computer: (...args) => css`
     @media (min-width: 769px) {
       ${css(...args)}
     }
   `,
+  small: (...args) => css`
+    @media(min-width: 769px) and (max-width: 1024px) {
+      ${css(...args)}
+    }
+  `,
+  medium: (...args) => css`
+    @media (min-width: 1025px) and (max-width: 1439px) {
+      ${css(...args)}
+    }
+  `,
   large: (...args) => css`
-    @media (min-width: 1441px) {
+    @media (min-width: 1440px) {
+      ${css(...args)}
+    }
+  `,
+  verylarge: (...args) => css`
+    @media (min-width: 1920px) {
       ${css(...args)}
     }
   `
