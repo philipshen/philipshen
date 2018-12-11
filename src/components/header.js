@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-import disableScroll from 'disable-scroll'
 
 import Logo from './logo'
 import { Menu } from '@material-ui/icons'
@@ -228,10 +227,11 @@ class Header extends React.Component {
 
   toggleHeaderVisibility() {
     this.setState(({ visible }) => {
-      if (visible)
-        disableScroll.off()
-      else
-        disableScroll.on()
+      // TODO: Prevent scrolling while the header is visible
+      // if (visible)
+      //   disableScroll.off()
+      // else
+      //   disableScroll.on()
 
       return {
         visible: !visible
