@@ -1,7 +1,25 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
+const path = require('path')
+const blogPosts = require('./src/data/blog/_blog-posts')
 
-// You can delete this file if you're not using it
+// Create pages for each blog post that's NOT from medium
+exports.createPages = ({ actions }) => {
+  const { createPage } = actions
+
+  return new Promise((resolve, reject) => {
+    for (const post of blogPosts) {
+      if (post.medium) continue
+
+      const slug = post.title.toLowerCase().replace(/ /g, '-')
+      console.log(slug)
+      createPage({
+        path: slug,
+        component: path.resolve('./src/components/templates/blog-post.js'),
+        context: {
+          // Data passed here is available as GQL vars
+        }
+      })
+    }
+
+    resolve()
+  })
+}

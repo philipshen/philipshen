@@ -6,6 +6,11 @@ export const media = {
       ${css(...args)}
     }
   `,
+  notphone: (...args) => css`
+    @media (min-width: 541px) {
+      ${css(...args)}
+    }
+  `,
   tablet: (...args) => css`
     @media (max-width: 768px) and (min-width: 541px) {
       ${css(...args)}

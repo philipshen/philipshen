@@ -3,7 +3,9 @@ import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 import { media } from '../../styles/style-utils.js'
-import { rhythm } from '../../utils/typography'
+import { ChevronLeft } from '@material-ui/icons'
+
+import Color from '../../styles/color'
 
 const Container = styled.div`
   /* Should be fixed at max size, even if user's browser isn't filling entire screen height */
@@ -149,6 +151,28 @@ const Subtitle = styled.h1`
   `}
 `
 
+// More styles in 'Container' because for some reason can't change them here
+const DownArrow = styled(ChevronLeft)`
+  position: absolute;
+  color: ${Color.primary_color};
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: rotate(-90deg);
+
+  ${media.computer`
+    bottom: 2vh;
+    height: 4vw !important;
+    width: 6vw !important;
+  `}
+
+  ${media.handheld`
+    bottom: 1vh;
+    height: 30px !important;
+    width: 45px !important;
+  `}
+`
+
 class Home extends Component {
 
   render() {
@@ -194,6 +218,7 @@ class Home extends Component {
                 <Title>Hi, I'm Phil</Title>
                 <Subtitle>I'm a programmer in the bay area.</Subtitle>
               </IntroContent>
+              <DownArrow className="downArrow" />
             </Container>
           )
         }}

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
+import { headerButtons, HeaderButtonData } from '../models/header-config.js'
+
 import Logo from './logo'
 import { Menu } from '@material-ui/icons'
 
@@ -124,8 +126,11 @@ const Overlay = styled.div`
 
 const HeaderButton = styled(Link)`
   text-decoration: none;
-  color: ${Color.dark_text};
   margin-left: 100;
+
+  h5 {
+    color: ${props => props.selected ? Color.primary_color : Color.dark_text};
+  }
 
   ${media.handheld`
     margin-right: 24px;
@@ -153,22 +158,10 @@ const MenuButton = styled(Menu)`
   transform: ${props => props.buttonsVisible ? 'rotate(180deg)' : 'rotate(0deg)'};
 `
 
-interface HeaderButtonData {
-  name: string;
-  to: string;
-}
-
 class Header extends React.Component {
 
   constructor(props) {
     super(props)
-
-    this.buttons = [
-      {to: "/", name: 'Home'},
-      {to: "/", name: 'Career'},
-      {to: "/", name: 'Portfolio'},
-      {to: "/", name: 'Blog'}
-    ]
 
     this.state = {
       visible: false // Only going to be applicable to phones
@@ -199,12 +192,13 @@ class Header extends React.Component {
             <Logo />
           </HeaderButton>
           {
-            this.buttons.map((buttonData: HeaderButtonData) => {
+            headerButtons.map((buttonData: HeaderButtonData) => {
               return (
                 <HeaderButton
                   key={buttonData.name}
-                  to={buttonData.to}
+                  to={buttonData.link}
                   className={'headerButton'}
+                  selected={this.props.currentSection === buttonData.key}
                 >
                   <h5>{buttonData.name}</h5>
                 </HeaderButton>
@@ -242,7 +236,8 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  title: PropTypes.string
+  title: PropTypes.string,
+  currentSection: PropTypes.number.isRequired
 }
 
 Header.defaultProps = {
