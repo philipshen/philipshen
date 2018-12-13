@@ -16,7 +16,7 @@ module.exports = [
     date: "August 10, 2018",
     title: "Sweet Pandas Eating Sweets",
     tags: ["notes"],
-    url: "test-blog.md" 
+    url: "/test-blog" 
   },
   {
     date: "September 18, 2018",
