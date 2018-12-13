@@ -9,13 +9,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: ${rhythm(1)};
+  padding-bottom: ${rhythm(1)};
   align-items: center;
   background-color: ${Color.light_gray};
 `
 
 const CopyrightText = styled.p`
-  margin-top: ${rhythm(1/2)};
-  margin-bottom: ${rhythm(3/4)};
+  margin-top: ${rhythm(3/4)};
+  margin-bottom: 0;
   font-size: ${rhythm(3/4)};
   color: ${Color.subtitle_text};
 `

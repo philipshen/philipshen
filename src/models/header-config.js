@@ -14,8 +14,8 @@ export interface HeaderButtonData {
 }
 
 export const headerButtons: HeaderButtonData[] = [
-  {key: Section.HOME, name: 'Home', link: '/'},
-  {key: Section.CAREER, name: 'Career', link: '/'},
-  {key: Section.PORTFOLIO, name: 'Portfolio', link: '/'},
-  {key: Section.BLOG, name: 'Blog', link: '/'},
+  {key: Section.HOME, name: 'Home', link: '/#'},
+  {key: Section.CAREER, name: 'Career', link: '/#career'},
+  {key: Section.PORTFOLIO, name: 'Portfolio', link: '/#portfolio'},
+  {key: Section.BLOG, name: 'Blog', link: '/#blog'},
 ]

@@ -1,5 +1,5 @@
 // @flow
-import { Link } from 'gatsby'
+import { navigate } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
@@ -135,8 +135,7 @@ const Overlay = styled.div`
   `}
 `
 
-const HeaderButton = styled(Link)`
-  text-decoration: none;
+const HeaderButton = styled.div`
   margin-left: 100;
 
   h5 {
@@ -157,6 +156,7 @@ const HeaderButton = styled(Link)`
 
   :hover {
     opacity: 0.8;
+    cursor: pointer;
   }
 `
 
@@ -207,7 +207,12 @@ class Header extends React.Component {
               return (
                 <HeaderButton
                   key={buttonData.name}
-                  to={buttonData.link}
+                  onClick={() => {
+                    this.setState({visible: false})
+                    disableScroll.off()
+
+                    navigate(buttonData.link)
+                  }}
                   className={'headerButton'}
                   selected={this.props.currentSection === buttonData.key}
                 >

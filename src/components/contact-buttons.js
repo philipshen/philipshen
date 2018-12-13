@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Icon from './svg-icons'
-import { media } from '../styles/style-utils.js'
 
 const Container = styled.div`
   display: inline-flex;
@@ -12,11 +11,6 @@ const Button = styled.div`
   width: 32px;
   margin-left: 12px;
   margin-right: 12px;
-
-  ${media.large`
-    height: 40px;
-    width: 40px;
-  `}
 `
 
 interface ButtonInfo {

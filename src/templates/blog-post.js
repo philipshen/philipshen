@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 import Color from '../styles/color'
 
@@ -15,7 +15,7 @@ const BlogContainer = styled.div`
   padding-right: 12px;
   padding-top: ${rhythm(2)};
   align-items: center;
-  padding-bottom: ${rhythm(4)};
+  padding-bottom: ${rhythm(8)};
 
   h2 {
     padding-top: ${rhythm(3/2)};
@@ -39,14 +39,36 @@ const DateText = styled.h4`
   color: ${Color.subtitle_text};
 `
 
+const BackLink = styled(Link)`
+  text-decoration: none;
+
+  h5 {
+    color: ${Color.subtitle_text};
+    font-weight: normal;
+  }
+
+  :hover {
+    text-decoration: underline;
+  }
+
+  :active {
+    text-decoration-color: ${Color.subtitle_text};
+  }
+`
+
 export default ({ data }) => {
   const post = data.markdownRemark
 
   return (
     <Layout blockHeader={true}>
       <BlogContainer>
+        <BackLink
+          to="/#blog"
+        >
+          <h5>{'< '} Back to blog</h5>
+        </BackLink>
         <TitleText>{post.frontmatter.title}</TitleText>
-        <DateText>{post.frontmatter.date}</DateText>
+        <DateText>{post.frontmatter.date} • {post.timeToRead} min read</DateText>
         <div dangerouslySetInnerHTML={{__html: post.html}} />
       </BlogContainer>
     </Layout>
@@ -57,6 +79,7 @@ export const query = graphql`
   query($slug: String!) {
     markdownRemark(fields: {slug: {eq: $slug}}) {
       html
+      timeToRead
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import { rhythm } from '../../utils/typography'
 
+import { Container } from './shared'
 import BlogPostCell from '../blog-post-cell'
 
 import blogPosts from '../../data/blog/_blog-posts'
 
-const Container = styled.div`
-  min-height: 100vh;
-  padding-left: 3vw;
-  padding-right: 3vw;
+const BlogContainer = styled(Container)`
+  margin-bottom: ${rhythm(4)};
 `
 
 const Content = styled.div`
@@ -21,14 +21,13 @@ const Posts = styled.div`
 
 const Filters = styled.div`
   flex: 2;
-  background-color: lightcyan;
 `
 
-class Blog extends Component {
+export default class Blog extends Component {
 
   render() {
     return (
-      <Container>
+      <BlogContainer>
         <h1>Blog</h1>
         <Content>
           <Posts>
@@ -41,10 +40,8 @@ class Blog extends Component {
           <Filters>
           </Filters>
         </Content>
-      </Container>
+      </BlogContainer>
     )
   }
 
 }
-
-export default Blog

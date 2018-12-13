@@ -6,15 +6,14 @@ export interface Tag {
 }
 
 const tagColors = {
-  cyan: "#38E0C8",
   lightblue: "#40A5DD",
   blue: "#485ADD",
   violet: "#8046DD",
   purple: "#CD43DD",
   magenta: "#E444A4",
-  red: "#E4465D",
+  red: "#C43F52",
   orange: "#E37C4D",
-  yellow: "#E0C94E",
+  gold: "#B9AB60",
   darkgreen: "#2E672E",
   parakeet: "#3AE17E"
 }
@@ -22,14 +21,40 @@ const tagColors = {
 const tags: Tag[] = {
   notes: {
     name: "notes",
-    color: tagColors.blue
+    color: tagColors.blue,
+    subtags: [
+      "artist"
+    ]
   },
   programming: {
     name: "programming",
     color: tagColors.purple,
     subtags: [
-      "mobile"
+      "mobile",
+      "games"
     ]
+  },
+  china: {
+    name: "china",
+    color: tagColors.gold,
+    subtags: [
+      "language"
+    ]
+  },
+  tech: {
+    name: "tech",
+    color: tagColors.red,
+    subtags: [
+      "blockchain"
+    ]
+  },
+  tutorial: {
+    name: "tutorial",
+    color: tagColors.orange
+  },
+  personal: {
+    name: "personal",
+    color: tagColors.darkgreen
   }
 }
 

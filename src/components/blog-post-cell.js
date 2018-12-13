@@ -14,6 +14,7 @@ import Color from '../styles/color'
 const Container = styled.div`
   padding-top: ${rhythm(1/2)};
   padding-bottom: ${rhythm(1/2)};
+  margin-bottom: ${rhythm(3/4)};
 
   :hover {
     h4, h5 {
@@ -46,10 +47,10 @@ const TagContainer = styled.div`
 
 const Tag = styled.h6`
   background-color: ${props => props.color};
-  padding-top: ${rhythm(1/4)};
-  padding-bottom: ${rhythm(1/4)};
-  padding-left: 12px;
-  padding-right: 12px;
+  padding-top: ${rhythm(1/8)};
+  padding-bottom: ${rhythm(1/8)};
+  padding-left: 8px;
+  padding-right: 8px;
   margin-right: 12px;
   margin-bottom: ${rhythm(1/4)};
   border-radius: 4px;
@@ -119,6 +120,7 @@ class BlogPostCell extends Component {
           :
           <Link
             className="link"
+            to={this.props.post.url}
           >
             {Content}
           </Link>

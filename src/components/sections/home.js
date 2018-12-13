@@ -98,7 +98,6 @@ const IntroContent = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 28vh;
-  background-color: lightcyan;
 
   ${media.handheld`
     order: 1;
