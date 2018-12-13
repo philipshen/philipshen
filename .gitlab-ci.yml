@@ -8,6 +8,7 @@ cache:
 pages:
   script:
     - npm install
+    - npm run patch-package
     - ./node_modules/.bin/gatsby build --prefix-paths
   artifacts:
     paths:
