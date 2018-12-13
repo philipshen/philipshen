@@ -88,7 +88,7 @@ const MaskContainer = styled.div`
 
   ${media.phone`
     path {
-      transform: translate(50vw, 20vh) scale(1.5)
+      transform: translate(50vw, 33vh) scale(1.5)
     }
   `}
 `
@@ -98,6 +98,7 @@ const IntroContent = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 28vh;
+  background-color: lightcyan;
 
   ${media.handheld`
     order: 1;
@@ -106,9 +107,9 @@ const IntroContent = styled.div`
   `}
 
   ${media.phone`
+    flex: 0;
     margin-top: 48px;
     margin-bottom: 12px;
-    height: auto;
     justify-content: flex-start;
   `}
 `

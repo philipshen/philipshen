@@ -3,6 +3,17 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+/*
+  During development, react components are *only* run in the browser where 'document' 
+  is defined; however when building Gatsby renders on a server where it is not. 
+  
+  Therefore importing this package will fail on Gatsby Build, but will work when the page
+  is opened in a browser. Ignore import errors.
+
+  As a consequence of this, CommonJS import statement (which can only appear at base level)
+  can't be used, and we have to use the ES6 module system for this entire class. Bummer.
+*/
+import disableScroll from 'disable-scroll'
 
 import { headerButtons, HeaderButtonData } from '../models/header-config.js'
 
@@ -221,11 +232,10 @@ class Header extends React.Component {
 
   toggleHeaderVisibility() {
     this.setState(({ visible }) => {
-      // TODO: Prevent scrolling while the header is visible
-      // if (visible)
-      //   disableScroll.off()
-      // else
-      //   disableScroll.on()
+      if (visible)
+        disableScroll.off()
+      else
+        disableScroll.on()
 
       return {
         visible: !visible
