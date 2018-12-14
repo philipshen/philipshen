@@ -1,19 +1,18 @@
-// @flow
-
 export const Section = {
   HOME: 0,
   CAREER: 1,
   PORTFOLIO: 2,
-  BLOG: 3
+  BLOG: 3,
+  ABOUT: 4
 }
 
-export interface HeaderButtonData {
-  key: int;
-  name: string;
-  link: string;
-}
+// interface HeaderButtonData {
+//   key: int;
+//   name: string;
+//   link: string;
+// }
 
-export const headerButtons: HeaderButtonData[] = [
+export const headerButtons = [
   {key: Section.HOME, name: 'Home', link: '/#'},
   {key: Section.CAREER, name: 'Career', link: '/#career'},
   {key: Section.PORTFOLIO, name: 'Portfolio', link: '/#portfolio'},

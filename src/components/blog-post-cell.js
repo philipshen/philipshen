@@ -87,12 +87,11 @@ class BlogPostCell extends Component {
         <TagContainer>
           {
             this.props.post.tags.map(tag => {
-              const colon = tag.indexOf(':')
-              const baseTag = colon > -1 ? tag.slice(0, colon) : tag
-              const tagInfo = tags[baseTag]
+              const tagInfo = tags[tag]
 
               return (
                 <Tag
+                  key={tag}
                   color={tagInfo.color}
                 >
                   {tag}

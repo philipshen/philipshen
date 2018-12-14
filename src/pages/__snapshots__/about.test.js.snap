@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`About Matches snapshot 1`] = `
+<Layout
+  currentHeaderSection={4}
+  shouldHideHeader={true}
+  spacer={true}
+>
+  <ForwardRef>
+    <h1>
+      About
+    </h1>
+    <div>
+      <h4>
+        Who made this site?
+      </h4>
+      <p
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Phil",
+          }
+        }
+      />
+    </div>
+    <div>
+      <h4>
+        How is this site so dang fast?
+      </h4>
+      <p
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "This site is powered by <a href=\\"https://gatsbyjs.org\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">Gatsby</a>!",
+          }
+        }
+      />
+    </div>
+    <div>
+      <h4>
+        Why does this site look so nice?
+      </h4>
+      <p
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "This site was made with the help of <a href=\\"https://styled-components.com\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">styled-components</a> and <a href=\\"https://material-ui.com/style/icons/\\" target=\\"_blank\\" rel=\\"noopener noreferrer\\">Material Icons</a>!",
+          }
+        }
+      />
+    </div>
+  </ForwardRef>
+</Layout>
+`;

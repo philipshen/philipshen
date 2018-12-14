@@ -13,7 +13,7 @@ const BlogContainer = styled.div`
   max-width: 700px;
   padding-left: 12px;
   padding-right: 12px;
-  padding-top: ${rhythm(2)};
+  margin-top: ${rhythm(1)};
   align-items: center;
   padding-bottom: ${rhythm(8)};
 
@@ -60,7 +60,7 @@ export default ({ data }) => {
   const post = data.markdownRemark
 
   return (
-    <Layout blockHeader={true}>
+    <Layout spacer={true}>
       <BlogContainer>
         <BackLink
           to="/#blog"

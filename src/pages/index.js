@@ -32,7 +32,7 @@ const Anchor = styled.div`
   `}
 `
 
-class IndexPage extends Component {
+export default class IndexPage extends Component {
 
   constructor(props) {
     super(props)
@@ -85,5 +85,3 @@ class IndexPage extends Component {
   }
 
 }
-
-export default IndexPage

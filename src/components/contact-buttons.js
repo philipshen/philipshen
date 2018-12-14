@@ -1,3 +1,4 @@
+// @flow
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Icon from './svg-icons'
@@ -13,12 +14,7 @@ const Button = styled.div`
   margin-right: 12px;
 `
 
-interface ButtonInfo {
-  iconName: string;
-  link: string;
-}
-
-const contactButtons: ButtonInfo[] = [
+const contactButtons: {iconName: string, link: string}[] = [
   {iconName: 'email', link: 'mailto:philphilphil.hello@gmail.com'},
   {iconName: 'medium', link: 'https://medium.com/@philipshen13'},
   {iconName: 'linkedin', link: 'https://www.linkedin.com/in/phil-shen/'},
@@ -32,8 +28,8 @@ class ContactButtons extends Component {
     return (
       <Container>
         {
-          contactButtons.map((buttonInfo: ButtonInfo) => (
-            <Button>
+          contactButtons.map((buttonInfo) => (
+            <Button key={buttonInfo.iconName}>
               <a href={buttonInfo.link}  target="_blank" rel="noopener noreferrer">
                 <Icon name={buttonInfo.iconName} viewBox={buttonInfo.iconName === 'email' ? '0 0 35 28' : '0 0 32 32'}/>
               </a>

@@ -7,7 +7,7 @@ const typography = new Typography({
   headerColor: Color.dark_text,
   bodyColor: Color.dark_text,
   headerFontFamily: [
-    "futura",
+    "Futura",
     "-apple-system",
     "BlinkMacSystemFont",
     "Segoe UI",

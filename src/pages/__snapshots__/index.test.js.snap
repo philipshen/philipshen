@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Index Matches snapshot 1`] = `
+<Layout
+  currentHeaderSection={0}
+  shouldHideHeader={false}
+>
+  <Home />
+  <ForwardRef
+    id="career"
+  >
+    <Waypoint
+      bottomOffset="0px"
+      fireOnRapidScroll={true}
+      horizontal={false}
+      onEnter={[Function]}
+      onLeave={[Function]}
+      onPositionChange={[Function]}
+      topOffset="0px"
+    />
+  </ForwardRef>
+  <Career />
+  <ForwardRef
+    id="portfolio"
+  >
+    <Waypoint
+      bottomOffset="0px"
+      fireOnRapidScroll={true}
+      horizontal={false}
+      onEnter={[Function]}
+      onLeave={[Function]}
+      onPositionChange={[Function]}
+      topOffset="0px"
+    />
+  </ForwardRef>
+  <Portfolio />
+  <ForwardRef
+    id="blog"
+  >
+    <Waypoint
+      bottomOffset="0px"
+      fireOnRapidScroll={true}
+      horizontal={false}
+      onEnter={[Function]}
+      onLeave={[Function]}
+      onPositionChange={[Function]}
+      topOffset="0px"
+    />
+  </ForwardRef>
+  <Blog />
+</Layout>
+`;

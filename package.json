@@ -37,11 +37,20 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage",
+    "watch": "jest --watchAll"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.0",
     "@babel/preset-flow": "^7.0.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-gatsby": "^0.1.6",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.6.0",
     "patch-package": "^5.1.1",
-    "postinstall-prepare": "^1.0.1"
+    "postinstall-prepare": "^1.0.1",
+    "react-test-renderer": "^16.6.3"
   }
 }

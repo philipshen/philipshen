@@ -1,9 +1,7 @@
-// @flow
-export interface Tag {
-  name: string;
-  color: string;
-  subtags?: string[];
-}
+// interface Tag {
+//   name: string;
+//   color: string;
+// }
 
 const tagColors = {
   lightblue: "#40A5DD",
@@ -15,38 +13,41 @@ const tagColors = {
   orange: "#E37C4D",
   gold: "#B9AB60",
   darkgreen: "#2E672E",
-  parakeet: "#3AE17E"
+  green: "#0AA349"
 }
 
-const tags: Tag[] = {
+const tags = {
   notes: {
     name: "notes",
-    color: tagColors.blue,
-    subtags: [
-      "artist"
-    ]
+    color: tagColors.blue
+  },
+  music: {
+    name: "music",
+    color: tagColors.lightblue
+  },
+  game: {
+    name: "game",
+    color: tagColors.violet
+  },
+  mobile: {
+    name: "mobile",
+    color: tagColors.magenta
   },
   programming: {
     name: "programming",
-    color: tagColors.purple,
-    subtags: [
-      "mobile",
-      "games"
-    ]
+    color: tagColors.purple
   },
-  china: {
-    name: "china",
+  chinese: {
+    name: "chinese",
     color: tagColors.gold,
-    subtags: [
-      "language"
-    ]
   },
   tech: {
     name: "tech",
     color: tagColors.red,
-    subtags: [
-      "blockchain"
-    ]
+  },
+  blockchain: {
+    name: "blockchain",
+    color: tagColors.green
   },
   tutorial: {
     name: "tutorial",

@@ -3,25 +3,17 @@ import { navigate } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-/*
-  During development, react components are *only* run in the browser where 'document' 
-  is defined; however when building Gatsby renders on a server where it is not. 
-  
-  Therefore importing this package will fail on Gatsby Build, but will work when the page
-  is opened in a browser. Ignore import errors.
-
-  As a consequence of this, CommonJS import statement (which can only appear at base level)
-  can't be used, and we have to use the ES6 module system for this entire class. Bummer.
-*/
 import disableScroll from 'disable-scroll'
 
-import { headerButtons, HeaderButtonData } from '../models/header-config.js'
+import { headerButtons } from '../models/header-config.js'
 
 import Logo from './logo'
 import { Menu } from '@material-ui/icons'
 
 import Color from '../styles/color'
 import { media } from '../styles/style-utils'
+
+import { Section } from '../models/header-config'
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -38,33 +30,10 @@ const HeaderContainer = styled.div`
     transition: transform 200ms;
   }
 
-  .headerFooting {
-    display: none;
-    flex: 1 !important;
-    width: 100%;
-    align-items: flex-end;
-    min-height: 40px;
-  }
-
-  .headerDivider {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    width: 8px;
-    background-color: ${Color.primary_color};
-  }
-
   ${media.phone`
     /* Collapse the nav bar */
     h5 {
       font-weight: normal;
-    }
-
-    .headerButton {
-      flex: 0.15;
-      margin-left: 16px;
     }
 
     .logo {
@@ -72,15 +41,7 @@ const HeaderContainer = styled.div`
       margin-bottom: 12px;
     }
 
-    .headerFooting {
-      display: flex;
-    }
-
     .menuButton {
-      display: block;
-    }
-
-    .headerDivider {
       display: block;
     }
   `};
@@ -101,7 +62,8 @@ const HeaderContainer = styled.div`
 // Just calc this here for convenience
 const HeaderButtonsContainer = styled.div`
   display: flex;
-  align-items: center;
+  flex: 1;
+  justify-content: space-between;
   background-color: white;
   z-index: 2;
 
@@ -111,12 +73,22 @@ const HeaderButtonsContainer = styled.div`
       height: 100vh;
       width: 60%;
       padding-right: 32px;
-      display: inline-flex;
       flex-direction: column;
-      align-items: flex-start;
 
       transition: transform 300ms ease-in-out;
       transform: ${props => props.visible && `translate(100%)`};
+  `}
+`
+
+const HeaderMainContent = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${media.phone`
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1;
   `}
 `
 
@@ -154,10 +126,44 @@ const HeaderButton = styled.div`
     margin-right: 48px;
   `}
 
+  ${media.phone`
+    flex: 0.15;
+    margin-left: 16px;
+  `}
+
   :hover {
     opacity: 0.8;
     cursor: pointer;
   }
+`
+
+const HeaderFooting = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 40px;
+
+  ${media.phone`
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+  `}
+`
+
+const Divider = styled.div`
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  background-color: ${Color.primary_color};
+
+  ${media.phone`
+    display: block;
+  `}
 `
 
 // Most styles are in the "HeaderContainer" styles. Didn't work when put here.
@@ -196,40 +202,48 @@ class Header extends React.Component {
         <HeaderButtonsContainer
           visible={this.state.visible}  
         >
-          <HeaderButton
-            to="/"
-            className={'headerButton logo'}
-          >
-            <Logo />
-          </HeaderButton>
-          {
-            headerButtons.map((buttonData: HeaderButtonData) => {
-              return (
-                <HeaderButton
-                  key={buttonData.name}
-                  onClick={() => {
-                    this.setState({visible: false})
-                    disableScroll.off()
-
-                    navigate(buttonData.link)
-                  }}
-                  className={'headerButton'}
-                  selected={this.props.currentSection === buttonData.key}
-                >
-                  <h5>{buttonData.name}</h5>
-                </HeaderButton>
-              )
-            })
-          }
-          <div className={'headerFooting headerButton'}>
+          <HeaderMainContent>
             <HeaderButton
+              to="/"
+              className={'logo'}
             >
+              <Logo />
+            </HeaderButton>
+            {
+              headerButtons.map((buttonData) => {
+                return (
+                  <HeaderButton
+                    key={buttonData.name}
+                    onClick={() => {
+                      this.setState({visible: false})
+                      disableScroll.off()
+
+                      navigate(buttonData.link)
+                    }}
+                    selected={this.props.currentSection === buttonData.key}
+                  >
+                    <h5>{buttonData.name}</h5>
+                  </HeaderButton>
+                )
+              })
+            }
+          </HeaderMainContent>
+          <HeaderFooting>
+            <HeaderButton
+              onClick={() => navigate('/about')}
+              selected={this.props.currentSection === Section.ABOUT}
+            >
+              <h5>
+                About
+              </h5>
+            </HeaderButton>
+            <HeaderButton>
               <h5>
                 Contact Me
               </h5>
             </HeaderButton>
-          </div>
-          <div className={'headerDivider'} />
+          </HeaderFooting>
+          <Divider />
         </HeaderButtonsContainer>
       </HeaderContainer>
     )
