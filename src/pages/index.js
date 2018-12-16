@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Waypoint from 'react-waypoint'

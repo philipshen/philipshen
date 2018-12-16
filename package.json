@@ -10,7 +10,6 @@
     "disable-scroll": "^0.4.1",
     "gatsby": "^2.0.53",
     "gatsby-image": "^2.0.20",
-    "gatsby-plugin-flow": "^1.0.2",
     "gatsby-plugin-manifest": "^2.0.9",
     "gatsby-plugin-offline": "^2.0.16",
     "gatsby-plugin-react-helmet": "^3.0.2",
@@ -42,10 +41,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
-    "@babel/preset-flow": "^7.0.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-preset-gatsby": "^0.1.6",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",

@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Icon from './svg-icons'
@@ -14,7 +13,7 @@ const Button = styled.div`
   margin-right: 12px;
 `
 
-const contactButtons: {iconName: string, link: string}[] = [
+const contactButtons = [
   {iconName: 'email', link: 'mailto:philphilphil.hello@gmail.com'},
   {iconName: 'medium', link: 'https://medium.com/@philipshen13'},
   {iconName: 'linkedin', link: 'https://www.linkedin.com/in/phil-shen/'},

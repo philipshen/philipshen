@@ -4,7 +4,6 @@ module.exports = {
     title: 'Philip Shen',
   },
   plugins: [
-    `gatsby-plugin-flow`,
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-typography`,
