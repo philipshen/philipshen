@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { rhythm } from '../../utils/typography'
 
 import { Container } from './shared'
+import SkillBar from '../skill-bar'
 
 import Color from '../../styles/color'
 
@@ -32,20 +33,23 @@ export default class Career extends Component {
             <Subtitle>
               I don't even have any good skills. You know like nunchuck skills, bowhunting skills, computer hacking skills...
             </Subtitle>
+            <div>
+              <SkillBar />
+            </div>
           </Section>
           <Section>
             <Title>Tools</Title>
             <Subtitle>
               Why do you have, like, a bunch of weird tools in a hidden compartment in your car?
             </Subtitle>
+            <div>
+              <SkillBar />
+            </div>
           </Section>
         </div>
         <Section>
           <Title>Timeline</Title>
           <Subtitle>A timeline of all my experience</Subtitle>
-        </Section>
-        <Section>
-          <Title>Certifications</Title>
         </Section>
       </Container>
     )
