@@ -1,6 +1,7 @@
 ---
 title: "My Thoughts on Pink Floyd"
 date: "2018-04-11"
+tags: ["music", "notes"]
 ---
 
 | **Overall Rating** | **High** | **Low** |

@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { rhythm } from '../utils/typography'
 
@@ -6,13 +7,14 @@ import { SkillLevel, SkillLevelConfig } from '../models/skill-level'
 
 const Container = styled.div`
   display: flex;
+  margin-bottom: ${rhythm(1)};
 `
 
 const Image = styled.div`
   height: ${rhythm(5/2)};
   width: ${rhythm(5/2)};
   border-radius: ${rhythm(5/4)};
-  background-color: lightcyan;
+  border: 2px solid ${props => props.color};
 `
 
 const Content = styled.div`
@@ -33,8 +35,8 @@ const BarContainer = styled.div`
 `
 
 const Bar = styled.div`
-  flex: 1;
-  background-color: ${props => SkillLevelConfig.get(props.level).color};
+  width: ${props => ((props.level + 1) / Object.keys(SkillLevel).length) * 100}%;
+  background-color: ${props => props.color};
   height: 16px;
   border-radius: 4px;
 `
@@ -48,19 +50,25 @@ const SkillLevelLabel = styled.h6`
 
 export default class SkillBar extends Component {
 
-  render() { 
-      return (
-        <Container>
-          <Image></Image>
-          <Content>
-            <Title>Swift for iOS Development</Title>
-            <BarContainer>
-              <Bar level={SkillLevel.MASTER}></Bar>
-              <SkillLevelLabel>Master</SkillLevelLabel>
-            </BarContainer>
-          </Content>
-        </Container>
-      )
+  render() {
+    const skillLevelConfig = SkillLevelConfig.get(this.props.skill.level)
+
+    return (
+      <Container>
+        <Image color={skillLevelConfig.color}></Image>
+        <Content>
+          <Title>{this.props.skill.name}</Title>
+          <BarContainer>
+            <Bar level={this.props.skill.level} color={skillLevelConfig.color}></Bar>
+            <SkillLevelLabel>{skillLevelConfig.name}</SkillLevelLabel>
+          </BarContainer>
+        </Content>
+      </Container>
+    )
   }
 
+}
+
+SkillBar.propTypes = {
+  skill: PropTypes.object.isRequired
 }

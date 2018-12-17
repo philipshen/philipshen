@@ -4,10 +4,10 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 import { rhythm } from '../utils/typography'
+import { getFormattedDate } from '../utils/helpers'
 
+import Tag from './tag'
 import Icon from './svg-icons'
-
-import tags from '../data/blog/_tags.js'
 
 import Color from '../styles/color'
 
@@ -45,22 +45,6 @@ const TagContainer = styled.div`
   max-width: 40%;
 `
 
-const Tag = styled.h6`
-  background-color: ${props => props.color};
-  padding-top: ${rhythm(1/8)};
-  padding-bottom: ${rhythm(1/8)};
-  padding-left: 8px;
-  padding-right: 8px;
-  margin-right: 12px;
-  margin-bottom: ${rhythm(1/4)};
-  border-radius: 4px;
-  color: white;
-  font-weight: normal;
-  display: inline-block;
-  float: right;
-  letter-spacing: 0.5px;
-`
-
 const MediumButton = styled.div`
   height: 20px;
   width: 20px;
@@ -82,21 +66,12 @@ class BlogPostCell extends Component {
               </MediumButton>
             }
           </Title>
-          <Date>{this.props.post.date}</Date>
+          <Date>{getFormattedDate(this.props.post.date)}</Date>
         </div>
         <TagContainer>
           {
             this.props.post.tags.map(tag => {
-              const tagInfo = tags[tag]
-
-              return (
-                <Tag
-                  key={tag}
-                  color={tagInfo.color}
-                >
-                  {tag}
-                </Tag>
-              )
+              return <Tag key={tag} tag={tag} />
             })
           }
         </TagContainer>

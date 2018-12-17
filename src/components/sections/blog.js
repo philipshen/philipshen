@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { rhythm } from '../../utils/typography'
+import { StaticQuery, graphql } from 'gatsby'
 
 import { Container } from './shared'
 import BlogPostCell from '../blog-post-cell'
@@ -9,7 +10,7 @@ import FilterCheckbox from '../filter-checkbox'
 import Color from '../../styles/color'
 
 import tags from '../../data/blog/_tags'
-import blogPosts from '../../data/blog/_blog-posts'
+import mediumPosts from '../../data/blog/_medium-posts'
 
 const FilterButtonAction = {
   CLEAR: 0,
@@ -81,101 +82,136 @@ export default class Blog extends Component {
 
     this.addFilterTag = this.addFilterTag.bind(this)
     this.removeFilterTag = this.removeFilterTag.bind(this)
+    this.getSortedBlogPosts = this.getSortedBlogPosts.bind(this)
+    this.getDateString = this.getDateString.bind(this)
     this.checkboxRefs = {}
   }
 
   render() {
     return (
-      <BlogContainer>
-        <Content>
-          <h1>Blog</h1>
-          <Posts>
-            {
-              blogPosts.map((post) => {
-                let dontFilter = false
-                for (const tag of post.tags) {
-                  if (this.state.currentFilters.has(tag)) {
-                    dontFilter = true
-                    break
+      <StaticQuery
+        query={graphql`
+          query {
+            allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
+              edges {
+                node {
+                  fields {
+                    slug
+                  }
+                  frontmatter {
+                    title
+                    date
+                    tags
                   }
                 }
-                
-                if (dontFilter)
-                  return (
-                    <BlogPostCell post={post} key={post.title} />
-                  )
-                else
-                  return null
-              })
+              }
             }
-          </Posts>
-        </Content>
-        <Filters>
-          <FilterHeader>
-            <h2>Filter</h2>
-            <h4 onClick={() => {
-              let newFilters
-              let newAction
-              let checkboxAction
+          }
+        `}
+        render={data => {
+          const blogPosts = this.getSortedBlogPosts(
+            data.allMarkdownRemark.edges.map(post => ({
+              ...post.node.frontmatter,
+              url: post.node.fields.slug
+            })),
+            mediumPosts
+          )
 
-              switch (this.state.filterAction) {
-                case FilterButtonAction.CLEAR:
-                  newFilters = new Set()
-                  newAction = FilterButtonAction.SET
-                  checkboxAction = 'deselect'
-                  break
-                case FilterButtonAction.SET:
-                  newFilters = new Set(Object.keys(tags))
-                  newAction = FilterButtonAction.CLEAR
-                  checkboxAction = 'select'
-                  break
-                default:
-                  break
-              }
-
-              Object.keys(this.checkboxRefs).forEach(ref => this.checkboxRefs[ref][checkboxAction]())
-              this.setState({currentFilters: newFilters, filterAction: newAction})
-            }}>
-              {
-                this.state.filterAction === FilterButtonAction.CLEAR
-                ?
-                "Clear All"
-                :
-                "Set All"
-              }
-            </h4>
-          </FilterHeader>
-          <FilterContainer>
-            {
-              Object.keys(tags).map(key => {
-                const tag = tags[key]
-                
-                // Todo: Handle subtags
-                return (
-                  <FilterCheckbox
-                    key={key}
-                    name={tag.name}
-                    ref={ref => this.checkboxRefs[key] = ref}
-                    onPress={selected => {
-                      if (selected)
-                        this.addFilterTag(tag.name)
+          return (
+            <BlogContainer>
+              <Content>
+                <h1>Blog</h1>
+                <Posts>
+                  {
+                    blogPosts.map((post) => {
+                      let dontFilter = false
+                      for (const tag of post.tags) {
+                        if (this.state.currentFilters.has(tag)) {
+                          dontFilter = true
+                          break
+                        }
+                      }
+                      
+                      if (dontFilter)
+                        return (
+                          <BlogPostCell post={post} key={post.title} />
+                        )
                       else
-                        this.removeFilterTag(tag.name)
-                    }}
-                    color={tag.color}
-                  />
-                )
-              })
-            }
-          </FilterContainer>
-        </Filters>
-      </BlogContainer>
+                        return null
+                    })
+                  }
+                </Posts>
+              </Content>
+              <Filters>
+                <FilterHeader>
+                  <h2>Filter</h2>
+                  <h4 onClick={() => {
+                    let newFilters
+                    let newAction
+                    let checkboxAction
+
+                    switch (this.state.filterAction) {
+                      case FilterButtonAction.CLEAR:
+                        newFilters = new Set()
+                        newAction = FilterButtonAction.SET
+                        checkboxAction = 'deselect'
+                        break
+                      case FilterButtonAction.SET:
+                        newFilters = new Set(Object.keys(tags))
+                        newAction = FilterButtonAction.CLEAR
+                        checkboxAction = 'select'
+                        break
+                      default:
+                        break
+                    }
+
+                    Object.keys(this.checkboxRefs).forEach(ref => this.checkboxRefs[ref][checkboxAction]())
+                    this.setState({currentFilters: newFilters, filterAction: newAction})
+                  }}>
+                    {
+                      this.state.filterAction === FilterButtonAction.CLEAR
+                      ?
+                      "Clear All"
+                      :
+                      "Set All"
+                    }
+                  </h4>
+                </FilterHeader>
+                <FilterContainer>
+                  {
+                    Object.keys(tags).map(key => {
+                      const tag = tags[key]
+                      
+                      // Todo: Handle subtags
+                      return (
+                        <FilterCheckbox
+                          key={key}
+                          name={tag.name}
+                          ref={ref => this.checkboxRefs[key] = ref}
+                          onPress={selected => {
+                            if (selected)
+                              this.addFilterTag(tag.name)
+                            else
+                              this.removeFilterTag(tag.name)
+                          }}
+                          color={tag.color}
+                        />
+                      )
+                    })
+                  }
+                </FilterContainer>
+              </Filters>
+            </BlogContainer>
+          )
+        }}
+      />
     )
   }
 
   addFilterTag(tag) {
     this.setState(({ currentFilters }) => ({
-      currentFilters: new Set(currentFilters.add(tag))
+      currentFilters: new Set(currentFilters.add(tag)),
+      filterAction: FilterButtonAction.CLEAR
     }))
   }
 
@@ -184,9 +220,34 @@ export default class Blog extends Component {
       const newFilters = new Set(currentFilters)
       newFilters.delete(tag)
 
-      let filterAction = newFilters.size === 0 ? FilterButtonAction.CLEAR : FilterButtonAction.SET
+      let filterAction = newFilters.size === 0 ? FilterButtonAction.SET : FilterButtonAction.CLEAR
       return {currentFilters: newFilters, filterAction}
     })
+  }
+
+  getSortedBlogPosts(mdBlogs, mediumBlogs) {
+    let mdPointer = 0
+    let mediumPointer = 0
+
+    let blogPosts = []
+    while (mdPointer < mdBlogs.length && mediumPointer < mediumBlogs.length) {
+      if (mdBlogs[mdPointer].date < mediumBlogs[mediumPointer].date) {
+        blogPosts.push(mediumBlogs[mediumPointer])
+        mediumPointer++
+      } else {
+        blogPosts.push(mdBlogs[mdPointer])
+        mdPointer++
+      }
+    }
+
+    blogPosts = blogPosts.concat(mdBlogs.slice(mdPointer))
+    blogPosts = blogPosts.concat(mediumBlogs.slice(mediumPointer))
+    
+    return blogPosts
+  }
+
+  getDateString() {
+
   }
 
 }

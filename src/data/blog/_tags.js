@@ -8,6 +8,7 @@ const tagColors = {
   blue: "#485ADD",
   violet: "#8046DD",
   purple: "#CD43DD",
+  maroon: "#85144b",
   magenta: "#E444A4",
   red: "#C43F52",
   orange: "#E37C4D",
@@ -24,6 +25,10 @@ const tags = {
   music: {
     name: "music",
     color: tagColors.lightblue
+  },
+  paper: {
+    name: "paper",
+    color: tagColors.maroon
   },
   game: {
     name: "game",
@@ -56,7 +61,7 @@ const tags = {
   personal: {
     name: "personal",
     color: tagColors.darkgreen
-  }
+  },
 }
 
 export default tags

@@ -9,7 +9,7 @@ import Layout from '../components/layout'
 
 import Home from '../components/sections/home'
 import Career from '../components/sections/career'
-import Portfolio from '../components/sections/portfolio'
+// import Portfolio from '../components/sections/portfolio'
 import Blog from '../components/sections/blog'
 
 const Anchor = styled.div`
@@ -65,13 +65,9 @@ export default class IndexPage extends Component {
           />
         </Anchor>
         <Career />
-        <Anchor id="portfolio">
-          <Waypoint
-            // onEnter={() => this.setState({section: Section.CAREER})}
-            // onLeave={() => this.setState({section: Section.PORTFOLIO})}
-          />
-        </Anchor>
-        <Portfolio />
+        {/* <Anchor id="portfolio"> */}
+        {/* </Anchor> */}
+        {/* <Portfolio /> */}
         <Anchor id="blog">
           <Waypoint
             // onEnter={() => this.setState({section: Section.PORTFOLIO})}

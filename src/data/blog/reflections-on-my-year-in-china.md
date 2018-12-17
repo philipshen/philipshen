@@ -1,6 +1,7 @@
 ---
 title: "Reflections on My Year in China"
 date: "2018-12-13"
+tags: ["personal"]
 ---
 
 My tenure in China is coming to an end. Pretty crazy, right? Sometimes it’s hard to keep track of what’s changed, or when it’s changed, or how it’s changed. I think that’s a product of the working lifestyle; unlike school where periods of accomplishment (semesters) have dedicated periods for reflection (breaks) and tangible measures of success (report cards), here in the workforce it’s always onto the next thing. And then the next. And the next. And so it goes. It’s good to take a minute and reflect a bit.

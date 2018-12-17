@@ -265,7 +265,7 @@ class Header extends React.Component {
 
 Header.propTypes = {
   title: PropTypes.string,
-  currentSection: PropTypes.number.isRequired
+  currentSection: PropTypes.number
 }
 
 Header.defaultProps = {

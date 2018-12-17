@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import { graphql, Link } from 'gatsby'
-
-import Color from '../styles/color'
-
 import { rhythm } from '../utils/typography'
 
 import Layout from '../components/layout.js'
+import Tag from '../components/tag'
+
+import Color from '../styles/color'
 
 const BlogContainer = styled.div`
   margin: auto;
@@ -28,15 +28,46 @@ const BlogContainer = styled.div`
   p {
     line-height: ${rhythm(3/2)};
   }
+
+  a {
+    color: ${Color.blue};
+    text-decoration: none;
+  }
+
+  li {
+    line-height: ${rhythm(3/2)};
+  }
+
+  blockquote {
+    font-style: italic;
+    color: ${Color.subtitle_text};
+    border-left: 8px solid ${Color.light_gray};
+    margin-left: 0;
+    padding-left: 1em;
+  }
 `
 
 const TitleText = styled.h1`
   margin-bottom: ${rhythm(1/2)};
 `
 
-const DateText = styled.h4`
+const TagContainer = styled.div`
+  display: flex;
+  margin-bottom: ${rhythm(1)};
+`
+
+const Metadata = styled.h5`
   font-weight: normal;
   color: ${Color.subtitle_text};
+  margin-bottom: ${rhythm(1/4)};
+`
+
+const MetadataContainer = styled.div`
+  margin-bottom: ${rhythm(1)};
+  padding-bottom: ${rhythm(3/4)};
+  padding-top: ${rhythm(1)};
+  border-top: 1px solid ${Color.light_gray};
+  border-bottom: 1px solid ${Color.light_gray};
 `
 
 const BackLink = styled(Link)`
@@ -56,8 +87,8 @@ const BackLink = styled(Link)`
   }
 `
 
-export default ({ data }) => {
-  const post = data.markdownRemark
+export default props => {
+  const post = props.data.markdownRemark
 
   return (
     <Layout spacer={true}>
@@ -68,7 +99,36 @@ export default ({ data }) => {
           <h5>{'< '} Back to blog</h5>
         </BackLink>
         <TitleText>{post.frontmatter.title}</TitleText>
-        <DateText>{post.frontmatter.date} • {post.timeToRead} min read</DateText>
+        <TagContainer>
+          {
+            post.frontmatter.tags.map(tag => {
+              return <Tag key={tag} tag={tag} />
+            })
+          }
+        </TagContainer>
+        <MetadataContainer>
+          <Metadata>
+            {post.frontmatter.date}
+          </Metadata>
+          <Metadata>
+            {post.timeToRead} min read
+          </Metadata>
+          {
+            post.frontmatter.author &&
+            <Metadata>
+              {post.frontmatter.media} written by {post.frontmatter.author}{' '}
+              {
+                post.frontmatter.link &&
+                <>
+                  •{' '}
+                  <a href={post.frontmatter.link} target="_blank" rel="noopener noreferrer">
+                    Link
+                  </a>
+                </>
+              }
+            </Metadata>
+          }
+        </MetadataContainer>
         <div dangerouslySetInnerHTML={{__html: post.html}} />
       </BlogContainer>
     </Layout>
@@ -83,6 +143,10 @@ export const query = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        tags
+        author
+        media
+        link
       }
     }
   }
