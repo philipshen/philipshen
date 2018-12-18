@@ -1,6 +1,7 @@
 module.exports = {
     dark_text: "#1F1641",
     subtitle_text: "#645D7B",
+    light_text: "#A6A3B4",
     primary_color: "#05ACD3",
     light_gray: "#E9E8EC",
     very_light_gray: "#F9F9FA",

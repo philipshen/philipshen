@@ -31,6 +31,20 @@ const BarContainer = styled.div`
 
 export default class Career extends Component {
 
+  constructor(props) {
+    super(props)
+
+    const numberOfTopSkills = 5
+
+    this.topSkills = []
+    const skillValues = skills.values()
+    for (let i = 0; i < numberOfTopSkills; i++) {
+      const skill = skillValues.next()
+      if (skill.done) break
+      this.topSkills.push(skill.value)
+    }
+  }
+
   render() {
     return (
       <Container>
@@ -43,8 +57,8 @@ export default class Career extends Component {
             </Subtitle>
             <BarContainer>
               {
-                skills.slice(0, 5).map(skill => 
-                  <SkillBar skill={skill} />
+                this.topSkills.map(skill => 
+                  <SkillBar key={skill.key} skill={skill} />
                 )
               }
             </BarContainer>
@@ -54,8 +68,8 @@ export default class Career extends Component {
             <Subtitle>
               Why do you have, like, a bunch of weird tools in a hidden compartment in your car?
             </Subtitle>
-            <div>
-            </div>
+            <BarContainer>
+            </BarContainer>
           </Section>
         </div>
         <Section>
