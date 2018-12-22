@@ -1,4 +1,3 @@
-// @flow
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
@@ -6,8 +5,9 @@ import { Link } from 'gatsby'
 import { rhythm } from '../utils/typography'
 import { getFormattedDate } from '../utils/helpers'
 
-import Tag from './tag'
 import Icon from './svg-icons'
+
+import tags from '../data/blog/_tags.js'
 
 import Color from '../styles/color'
 
@@ -45,6 +45,22 @@ const TagContainer = styled.div`
   max-width: 40%;
 `
 
+const Tag = styled.h6`
+  background-color: ${props => props.color};
+  padding-top: ${rhythm(1/8)};
+  padding-bottom: ${rhythm(1/8)};
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-left: 12px;
+  margin-bottom: ${rhythm(1/4)};
+  border-radius: 4px;
+  color: white;
+  font-weight: normal;
+  display: block;
+  float: right;
+  letter-spacing: 0.5px;
+`
+
 const MediumButton = styled.div`
   height: 20px;
   width: 20px;
@@ -71,7 +87,16 @@ class BlogPostCell extends Component {
         <TagContainer>
           {
             this.props.post.tags.map(tag => {
-              return <Tag key={tag} tag={tag} />
+              const tagInfo = tags[tag]
+
+              return (
+                <Tag
+                  key={tag}
+                  color={tagInfo.color}
+                >
+                  {tag}
+                </Tag>
+              )
             })
           }
         </TagContainer>

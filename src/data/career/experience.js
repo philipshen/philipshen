@@ -1,36 +1,70 @@
 // Start date, end date (null if still going), type
 import { ExperienceType } from '../../models/experience-type'
 
+/*
+{
+  type: ExperienceType. For filtering and such
+  organization: String (name of the organization)
+  location: String
+  start_date: Date
+  end_date?: Date
+  tools: String[]
+  level: int. This is for UI calculations.
+}
+*/
+
 const experiences = {
-  fantem: {
+  "philipshen": {
+    type: ExperienceType.SIDE_PROJECT,
+    title: "philipshen.com",
+    start_date: new Date(2018, 11, 4),
+    tools: ["gatsby", "react", "jest"],
+    level: 3
+  },
+  "coast": {
+    type: ExperienceType.SIDE_PROJECT,
+    title: "Coast",
+    location: "Shenzhen, China",
+    start_date: new Date(2018, 4, 1),
+    tools: ["react-native", "typescript", "jest"],
+    level: 2
+  },
+  "fantem": {
     type: ExperienceType.FULL_TIME,
     organization: "Fantem Technologies",
+    title: "Software Engineer",
     location: "Shenzhen, China",
     start_date: new Date(2017, 9, 23),
     end_date: new Date(2018, 11, 21),
-    tools: ["swift-ios", "metal", "objc-ios"]
+    tools: ["swift-ios", "metal", "objc-ios"],
+    level: 0
   },
   "fantem-intern": {
     type: ExperienceType.FULL_TIME,
     organization: "Fantem Technologies",
+    title: "Intern",
     location: "Shenzhen, China",
     start_date: new Date(2017, 6, 5),
     end_date: new Date(2017, 7, 7),
-    tools: ["react-native, typescript"]
+    tools: ["react-native, typescript"],
+    level: 1
   },
   "joyon-kehel-weights": {
     type: ExperienceType.PART_TIME,
     organization: "Joy ON Toys",
+    title: "Freelance iOS Developer",
     location: "Remote",
     start_date: new Date(2018, 8, 3),
-    tools: ["swift-ios", "firebase"]
+    tools: ["swift-ios", "firebase"],
+    level: 1
   },
   "bradfield-1": {
     type: ExperienceType.EDUCATION,
     organization: "Bradfield School of Computer Science",
     location: "San Francisco, California",
     start_date: new Date(2017, 8),
-    end_date: new Date(2017, 11, 12)
+    end_date: new Date(2017, 11, 12),
+    level: 1
   }
 }
 

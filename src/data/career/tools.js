@@ -17,7 +17,12 @@ const tools = new Map([
     name: "React Native",
     level: SkillLevel.MASTER
   }],
-  ["firebase": {
+  ["jest", {
+    key: "jest",
+    name: "Jest",
+    level: SkillLevel.ADVANCED
+  }],
+  ["firebase", {
     key: "firebase",
     name: "Firebase",
     level: SkillLevel.ADVANCED
@@ -31,5 +36,15 @@ const tools = new Map([
     key: "metal",
     name: "Metal",
     level: SkillLevel.COMPETENT
+  }],
+  ["react", {
+    key: "react",
+    name: "React JS",
+    level: SkillLevel.ADVANCED
+  }],
+  ["gatsby", {
+    key: "gatsby",
+    name: "Gatsby JS",
+    level: SkillLevel.ADEPT
   }]
 ])

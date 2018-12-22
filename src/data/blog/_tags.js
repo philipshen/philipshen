@@ -6,6 +6,7 @@
 const tagColors = {
   lightblue: "#40A5DD",
   blue: "#485ADD",
+  indigo: "#3C6478",
   violet: "#8046DD",
   purple: "#CD43DD",
   maroon: "#85144b",
@@ -25,6 +26,10 @@ const tags = {
   music: {
     name: "music",
     color: tagColors.lightblue
+  },
+  book: {
+    name: "book",
+    color: tagColors.indigo
   },
   paper: {
     name: "paper",

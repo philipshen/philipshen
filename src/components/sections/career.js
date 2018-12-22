@@ -29,6 +29,10 @@ const BarContainer = styled.div`
 
 `
 
+const ExperienceTimeline = styled(Timeline)`
+  overflow: visible;
+`
+
 export default class Career extends Component {
 
   constructor(props) {
@@ -75,7 +79,7 @@ export default class Career extends Component {
         <Section>
           <Title>Timeline</Title>
           <Subtitle>A timeline of all my experience</Subtitle>
-          <Timeline />
+          <ExperienceTimeline />
         </Section>
       </Container>
     )

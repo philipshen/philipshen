@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { rhythm } from '../../utils/typography'
 import { StaticQuery, graphql } from 'gatsby'
+import { media } from '../../styles/style-utils'
+import { Tune } from '@material-ui/icons'
 
 import { Container } from './shared'
 import BlogPostCell from '../blog-post-cell'
@@ -17,11 +19,6 @@ const FilterButtonAction = {
   SET: 1
 }
 
-const BlogContainer = styled(Container)`
-  display: flex;
-  margin-bottom: ${rhythm(4)};
-`
-
 const Content = styled.div`
   flex: 3;
 `
@@ -30,9 +27,43 @@ const Posts = styled.div`
   flex: 3;
 `
 
+const PostsHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: ${rhythm(3/2)};
+
+  h1 {
+    margin-bottom: 0 !important;
+  }
+`
+
+const FilterIcon = styled(Tune)`
+  color: ${Color.dark_text};
+  height: 32px !important;
+  width: 32px !important;
+  display: none !important;
+  cursor: pointer;
+
+  :hover {
+    opacity: 0.7;
+  }
+
+  ${media.handheld`
+    display: block !important;
+  `}
+`
+
 const Filters = styled.div`
   flex: 2;
   margin-left: 3vw;
+
+  ${media.handheld`
+    display: none;
+    /* position: fixed;
+    top: 0;
+    width: 100%; */
+  `}
 `
 
 const FilterContainer = styled.div`
@@ -69,6 +100,11 @@ const FilterHeader = styled.div`
   }
 `
 
+const BlogContainer = styled(Container)`
+  display: flex;
+  margin-bottom: ${rhythm(4)};
+`
+
 export default class Blog extends Component {
 
   constructor(props) {
@@ -83,7 +119,6 @@ export default class Blog extends Component {
     this.addFilterTag = this.addFilterTag.bind(this)
     this.removeFilterTag = this.removeFilterTag.bind(this)
     this.getSortedBlogPosts = this.getSortedBlogPosts.bind(this)
-    this.getDateString = this.getDateString.bind(this)
     this.checkboxRefs = {}
   }
 
@@ -120,7 +155,12 @@ export default class Blog extends Component {
           return (
             <BlogContainer>
               <Content>
-                <h1>Blog</h1>
+                <PostsHeader>
+                  <h1>Blog</h1>
+                  <FilterIcon
+                    onClick={() => console.log('Hello Inka')}
+                  />
+                </PostsHeader>
                 <Posts>
                   {
                     blogPosts.map((post) => {
@@ -244,10 +284,6 @@ export default class Blog extends Component {
     blogPosts = blogPosts.concat(mediumBlogs.slice(mediumPointer))
     
     return blogPosts
-  }
-
-  getDateString() {
-
   }
 
 }
