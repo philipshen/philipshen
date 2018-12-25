@@ -18,3 +18,9 @@ export const headerButtons = [
   {key: Section.PORTFOLIO, name: 'Portfolio', link: '/#portfolio'},
   {key: Section.BLOG, name: 'Blog', link: '/#blog'},
 ]
+
+export const headerHeight = {
+  computer: 72,
+  phone: 44,
+  tablet: 54,
+}

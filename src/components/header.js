@@ -12,7 +12,7 @@ import { Menu } from '@material-ui/icons'
 import Color from '../styles/color'
 import { media } from '../styles/style-utils'
 
-import { Section } from '../models/header-config'
+import { Section, headerHeight } from '../models/header-config'
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -46,13 +46,13 @@ const HeaderContainer = styled.div`
   `};
 
   ${media.tablet`
-    height: 54px;
+    height: ${headerHeight.tablet}px;
     padding-left: 20px;
     padding-top: 16px;
   `}
 
   ${media.computer`
-    height: 72px;
+    height: ${headerHeight.computer}px;
     padding-left: 24px;
     padding-top: 16px;
   `}

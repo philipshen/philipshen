@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Waypoint from 'react-waypoint'
-import { media } from '../styles/style-utils'
+import { snippets } from '../styles/style-utils'
+import Color from '../styles/color'
 
 import { Section } from '../models/header-config.js'
 
@@ -9,26 +10,17 @@ import Layout from '../components/layout'
 
 import Home from '../components/sections/home'
 import Career from '../components/sections/career'
-// import Portfolio from '../components/sections/portfolio'
+import Portfolio from '../components/sections/portfolio'
 import Blog from '../components/sections/blog'
 
+const anchorPadding = 8;
 const Anchor = styled.div`
   display: block;
   position: relative;
   visibility: hidden;
 
-  /* This matches the header heights! */
-  ${media.computer`
-    top: -72px;
-  `}
-
-  ${media.tablet`
-    top: -54px;
-  `}
-
-  ${media.phone`
-    top: -44px;
-  `}
+  /* This matches the header heights! Plus padding for good measure */
+  ${snippets.topDistanceHeader({padding: anchorPadding, negative: true})}
 `
 
 export default class IndexPage extends Component {
@@ -53,25 +45,54 @@ export default class IndexPage extends Component {
 
     return (
       <Layout
-        // shouldHideHeader={this.state.scrolledSection !== Section.HOME}
-        shouldHideHeader={false}
+        shouldHideHeader={this.state.section !== Section.HOME}
         currentHeaderSection={this.state.section}
       >
         <Home />
         <Anchor id="career">
           <Waypoint
-            // onEnter={() => this.setState({section: Section.HOME})}
-            // onLeave={() => this.setState({section: Section.CAREER})}
+            onEnter={({ previousPosition }) => {
+              // We're "leaving" a section (i.e. changing the state.section) once we scroll UP past its header
+              // We're "entering" a section once we scroll DOWN... all the way until it's fully on the screen
+              if (previousPosition === 'above') {
+                this.setState({section: Section.HOME})
+              }
+            }}
+            onLeave={({ currentPosition }) => {
+              if (currentPosition === 'above') {
+                this.setState({section: Section.CAREER})
+              }
+            }}
           />
         </Anchor>
         <Career />
-        {/* <Anchor id="portfolio"> */}
-        {/* </Anchor> */}
-        {/* <Portfolio /> */}
+        <Anchor id="portfolio">
+          <Waypoint
+            onEnter={({ previousPosition }) => {
+              if (previousPosition === 'above') {
+                this.setState({section: Section.CAREER})
+              }
+            }}
+            onLeave={({ currentPosition }) => {
+              if (currentPosition === 'above') {
+                this.setState({section: Section.PORTFOLIO})
+              }
+            }}
+          />
+        </Anchor>
+        <Portfolio />
         <Anchor id="blog">
           <Waypoint
-            // onEnter={() => this.setState({section: Section.PORTFOLIO})}
-            // onLeave={() => this.setState({section: Section.BLOG})}
+            onEnter={({ previousPosition }) => {
+              if (previousPosition === 'above') {
+                this.setState({section: Section.PORTFOLIO})
+              }
+            }}
+            onLeave={({ currentPosition }) => {
+              if (currentPosition === 'above') {
+                this.setState({section: Section.BLOG})
+              }
+            }}
           />
         </Anchor>
         <Blog />

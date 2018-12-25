@@ -44,6 +44,11 @@ module.exports = {
     return `${month} ${day}, ${components[0]}`
   },
 
+  getFormattedDateForDate(date) {
+    const month = months[date.getMonth() + 1]
+    return `${month} ${date.getDate()}, ${date.getFullYear()}`
+  },
+
   getShortMonth(month) {
     return shortMonths[month]
   }

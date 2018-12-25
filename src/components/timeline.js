@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { rhythm } from '../utils/typography'
 import { getShortMonth } from '../utils/helpers'
+import { getFormattedDateForDate } from '../utils/helpers'
+import { ArrowDropDown } from '@material-ui/icons'
 
 import Color from '../styles/color'
 import { ExperienceTypeConfig } from '../models/experience-type'
@@ -19,10 +21,45 @@ const EXPERIENCE_MARGIN = 10
 
 // Styled components
 const Container = styled.div`
+  overflow-x: scroll;
+  align-items: center;
+  display: flex;
+`
+
+const TimelineEnd = styled.div`
+  width: 100px;
+  position: relative;
+  left: ${props => props.left}px;
+`
+
+const TimelineEndCircle = styled.div`
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  background-color: ${Color.light_gray};
+`
+
+const TimelineLeft = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const TimelineLeftArrow = styled(ArrowDropDown)`
+  transform: rotate(90deg) scale(2);
+  color: ${Color.light_gray};
+`
+
+const TimelineLeftText = styled.h4`
+  font-weight: normal;
+  color: ${Color.light_text};
+  margin-right: 12px;
+  margin-bottom: 0;
+`
+
+const TimelineContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-x: scroll;
   height: ${TIMELINE_HEIGHT}px;
   position: relative;
 `
@@ -32,7 +69,7 @@ const BaseTimeline = styled.div`
   background-color: ${Color.light_gray};
   height: 2px;
   width: ${props => props.width}px;
-  position: relative;
+  position: absolute;
 `
 
 const MonthMarker = styled.div`
@@ -106,6 +143,7 @@ const Experience = styled.div`
   top: ${props => props.top}px;
   transition: max-height 0.3s ease-in-out;
   white-space: nowrap;
+  cursor: pointer;
 
   div {
     visibility: hidden;
@@ -134,15 +172,25 @@ export default class Timeline extends Component {
 
   render() {
     // Inclusive
-
     return (
       <Container>
-        <BaseTimeline
-          width={this.numberOfMonths * widthPerMonth}
+        <TimelineLeft>
+          <TimelineLeftText>{getFormattedDateForDate(this.endDate)}</TimelineLeftText>
+          <TimelineLeftArrow />
+        </TimelineLeft>
+        <TimelineContentContainer>
+          <BaseTimeline
+            width={this.numberOfMonths * widthPerMonth}
+          >
+          </BaseTimeline>
+          {this.renderMonthMarkers()}
+          {this.renderExperiences()}
+        </TimelineContentContainer>
+        <TimelineEnd
+          left={this.numberOfMonths * widthPerMonth}
         >
-        </BaseTimeline>
-        {this.renderMonthMarkers()}
-        {this.renderExperiences()}
+          <TimelineEndCircle />
+        </TimelineEnd>
       </Container>
     )
   }

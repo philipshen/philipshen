@@ -1,4 +1,5 @@
 import { css } from 'styled-components'
+import { headerHeight } from '../models/header-config'
 
 export const media = {
   phone: (...args) => css`
@@ -45,5 +46,21 @@ export const media = {
     @media (min-width: 1920px) {
       ${css(...args)}
     }
+  `
+}
+
+export const snippets = {
+  topDistanceHeader: (config = {padding: 0, negative: false}) => css`
+    ${media.computer`
+      top: ${headerHeight.computer + config.padding * (config.negative ? -1 : 1)}px;
+    `}
+
+    ${media.tablet`
+      top: ${headerHeight.tablet + config.padding * (config.negative ? -1 : 1)}px;
+    `}
+
+    ${media.phone`
+      top: ${headerHeight.phone + config.padding * (config.negative ? -1 : 1)}px;
+    `}
   `
 }
