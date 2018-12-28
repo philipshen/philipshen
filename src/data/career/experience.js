@@ -1,5 +1,5 @@
 // Start date, end date (null if still going), type
-import { ExperienceType } from '../../models/experience-type'
+const { ExperienceType } = require('../../models/experience-type')
 
 /*
 {
@@ -12,14 +12,18 @@ import { ExperienceType } from '../../models/experience-type'
   level: int. This is for UI calculations.
 }
 */
-
-const experiences = {
+module.exports = {
   "philipshen": {
     type: ExperienceType.SIDE_PROJECT,
     title: "philipshen.com",
     start_date: new Date(2018, 11, 4),
     tools: ["gatsby", "react", "jest"],
-    level: 3
+    level: 3,
+    description: `
+      This site! It's a static site I built with Gatsby and hosted on Gitlab Pages.
+      I hope you enjoy it! Something tells me there isn't a whole lot going around...
+      but whatever. yabba dabba doo!
+    `
   },
   "coast": {
     type: ExperienceType.SIDE_PROJECT,
@@ -67,5 +71,3 @@ const experiences = {
     level: 1
   }
 }
-
-export default experiences

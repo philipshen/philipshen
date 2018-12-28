@@ -147,7 +147,7 @@ export default class Blog extends Component {
           const blogPosts = this.getSortedBlogPosts(
             data.allMarkdownRemark.edges.map(post => ({
               ...post.node.frontmatter,
-              url: post.node.fields.slug
+              url: `blog/${post.node.fields.slug}`
             })),
             mediumPosts
           )

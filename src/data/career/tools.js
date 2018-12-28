@@ -48,3 +48,5 @@ const tools = new Map([
     level: SkillLevel.ADEPT
   }]
 ])
+
+export default tools

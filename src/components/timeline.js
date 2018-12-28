@@ -4,6 +4,7 @@ import { rhythm } from '../utils/typography'
 import { getShortMonth } from '../utils/helpers'
 import { getFormattedDateForDate } from '../utils/helpers'
 import { ArrowDropDown } from '@material-ui/icons'
+import { navigate } from 'gatsby'
 
 import Color from '../styles/color'
 import { ExperienceTypeConfig } from '../models/experience-type'
@@ -15,7 +16,7 @@ const DAYS_IN_MONTH = 31
 const widthPerYear = 1280
 const widthPerMonth = widthPerYear / 12
 const widthPerDay = widthPerMonth / DAYS_IN_MONTH
-const TIMELINE_HEIGHT = 300
+const TIMELINE_HEIGHT = 200
 const EXPERIENCE_HEIGHT = 12
 const EXPERIENCE_MARGIN = 10
 
@@ -42,6 +43,8 @@ const TimelineEndCircle = styled.div`
 const TimelineLeft = styled.div`
   display: flex;
   justify-content: center;
+  margin-right: 24px;
+  margin-left: calc(3vw + 12px);
 `
 
 const TimelineLeftArrow = styled(ArrowDropDown)`
@@ -240,6 +243,7 @@ export default class Timeline extends Component {
           left={left} 
           width={width}
           top={this.getYValueForLevel(experience.level)}
+          onClick={() => navigate(`/experience/${key}`)}
         >
           <div>
             <ExperienceTitle>

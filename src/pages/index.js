@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Waypoint from 'react-waypoint'
 import { snippets } from '../styles/style-utils'
-import Color from '../styles/color'
 
 import { Section } from '../models/header-config.js'
 

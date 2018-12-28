@@ -1,6 +1,6 @@
-import Color from '../styles/color'
+const Color = require('../styles/color')
 
-export const ExperienceType = {
+const ExperienceType = {
   FULL_TIME: 0,
   PART_TIME: 1,
   SIDE_PROJECT: 2,
@@ -8,7 +8,7 @@ export const ExperienceType = {
   EDUCATION: 4
 }
 
-export const ExperienceTypeConfig = new Map([
+const ExperienceTypeConfig = new Map([
   [ExperienceType.FULL_TIME, {
     name: "Full time Work",
     color: Color.magenta
@@ -30,3 +30,8 @@ export const ExperienceTypeConfig = new Map([
     color: Color.cerulean,
   }]
 ])
+
+module.exports = {
+  ExperienceType,
+  ExperienceTypeConfig
+}

@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import { rhythm } from '../../utils/typography'
 
+export const horizontalMargin = '3vw'
+
 export const Container = styled.div`
   min-height: 100vh;
   padding-left: 3vw;

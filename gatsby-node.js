@@ -1,6 +1,8 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
+const experiences = require(`./src/data/career/experience`)
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {
@@ -15,7 +17,21 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
-  return new Promise((resolve, reject) => {
+
+  // Create pages for experiences
+  Object.keys(experiences).forEach(key => {
+    // const experience = experiences(key)
+    createPage({
+      path: `experience/${key}`,
+      component: path.resolve(`./src/templates/experience.js`),
+      context: {
+        experienceKey: key
+      }
+    })
+  })
+
+  // Create blog post pages
+  return new Promise(resolve => {
     graphql(`
       {
         allMarkdownRemark {
@@ -31,7 +47,7 @@ exports.createPages = ({ graphql, actions }) => {
     `).then(result => {
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
         createPage({
-          path: node.fields.slug,
+          path: `blog${node.fields.slug}`,
           component: path.resolve(`./src/templates/blog-post.js`),
           context: {
             // Data passed to context is available

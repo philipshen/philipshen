@@ -5,11 +5,6 @@ import { rhythm } from '../utils/typography'
 
 import { SkillLevel, SkillLevelConfig } from '../models/skill-level'
 
-const Container = styled.div`
-  display: flex;
-  margin-bottom: ${rhythm(1)};
-`
-
 const Image = styled.div`
   height: ${rhythm(5/2)};
   width: ${rhythm(5/2)};
@@ -48,10 +43,25 @@ const SkillLevelLabel = styled.h6`
   margin-left: 12px;
 `
 
+const Container = styled.div`
+  display: flex;
+  margin-bottom: ${rhythm(1)};
+
+  cursor: pointer;
+
+  :hover {
+    ${Title} {
+      text-decoration: underline;
+    }
+  }
+`
+
 export default class SkillBar extends Component {
 
   render() {
     const skillLevelConfig = SkillLevelConfig.get(this.props.skill.level)
+    console.log(this.props.skill)
+    console.log(skillLevelConfig)
 
     return (
       <Container>

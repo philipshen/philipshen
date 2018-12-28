@@ -51,6 +51,11 @@ module.exports = {
 
   getShortMonth(month) {
     return shortMonths[month]
+  },
+
+  getLongMonth(month) {
+    // Input is 0-11 month. Need to adjust...
+    return months[month + 1]
   }
 
 }
