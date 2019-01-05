@@ -49,7 +49,7 @@ export default class Breadcrumbs extends Component {
 				{
 					this.props.crumbs.map((crumb, index) => {
 						return (
-							<CrumbContainer>
+							<CrumbContainer key={index}>
 								<CrumbLink to={crumb.to}>
 									<h5>{crumb.name}</h5>
 								</CrumbLink>

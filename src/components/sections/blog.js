@@ -164,20 +164,20 @@ export default class Blog extends Component {
                 <Posts>
                   {
                     blogPosts.map((post) => {
-                      let dontFilter = false
+                      let filter = false
                       for (const tag of post.tags) {
-                        if (this.state.currentFilters.has(tag)) {
-                          dontFilter = true
+                        if (!this.state.currentFilters.has(tag)) {
+                          filter = true
                           break
                         }
                       }
                       
-                      if (dontFilter)
+                      if (filter)
+                        return null
+                      else
                         return (
                           <BlogPostCell post={post} key={post.title} />
                         )
-                      else
-                        return null
                     })
                   }
                 </Posts>

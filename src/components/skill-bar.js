@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { navigate } from 'gatsby'
 import styled from 'styled-components'
 import { rhythm } from '../utils/typography'
 
@@ -60,11 +61,11 @@ export default class SkillBar extends Component {
 
   render() {
     const skillLevelConfig = SkillLevelConfig.get(this.props.skill.level)
-    console.log(this.props.skill)
-    console.log(skillLevelConfig)
 
     return (
-      <Container>
+      <Container
+        onClick={() => navigate(this.props.link)}
+      >
         <Image color={skillLevelConfig.color}></Image>
         <Content>
           <Title>{this.props.skill.name}</Title>
@@ -80,5 +81,6 @@ export default class SkillBar extends Component {
 }
 
 SkillBar.propTypes = {
-  skill: PropTypes.object.isRequired
+  skill: PropTypes.object.isRequired,
+  link: PropTypes.string.isRequired
 }

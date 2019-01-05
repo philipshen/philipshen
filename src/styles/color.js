@@ -15,6 +15,7 @@ module.exports = {
   master_color: "#43770C",
 
   magenta: "#C840E9",
+  magenta_pink: '#E64398',
   orange: "#FF9057",
   ruby: "#FF4F9A",
   cerulean: "#40A5DD",

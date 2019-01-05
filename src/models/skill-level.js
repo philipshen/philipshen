@@ -1,6 +1,6 @@
-import Color from '../styles/color'
+const Color = require('../styles/color')
 
-export const SkillLevel = {
+const SkillLevel = {
   NOOB: 0,
   COMPETENT: 1,
   INTERMEDIATE: 2,
@@ -9,7 +9,7 @@ export const SkillLevel = {
   MASTER: 5
 }
 
-export const SkillLevelConfig = new Map([
+const SkillLevelConfig = new Map([
   [SkillLevel.NOOB, {
     color: Color.noob_color,
     name: "Noob"
@@ -35,3 +35,8 @@ export const SkillLevelConfig = new Map([
     name: "Master"
   }],
 ])
+
+module.exports = {
+  SkillLevel,
+  SkillLevelConfig
+}

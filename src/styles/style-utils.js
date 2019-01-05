@@ -52,15 +52,15 @@ export const media = {
 export const snippets = {
   topDistanceHeader: (config = {padding: 0, negative: false}) => css`
     ${media.computer`
-      top: ${headerHeight.computer + config.padding * (config.negative ? -1 : 1)}px;
+      top: ${config.negative && '-'}${headerHeight.computer + config.padding}px;
     `}
 
     ${media.tablet`
-      top: ${headerHeight.tablet + config.padding * (config.negative ? -1 : 1)}px;
+      top: ${config.negative && '-'}${headerHeight.tablet + config.padding}px;
     `}
 
     ${media.phone`
-      top: ${headerHeight.phone + config.padding * (config.negative ? -1 : 1)}px;
+      top: ${config.negative && '-'}${headerHeight.phone + config.padding}px;
     `}
   `
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Waypoint from 'react-waypoint'
-import { snippets } from '../styles/style-utils'
+import { rhythm } from '../utils/typography'
 
 import { Section } from '../models/header-config.js'
 
@@ -12,14 +12,13 @@ import Career from '../components/sections/career'
 import Portfolio from '../components/sections/portfolio'
 import Blog from '../components/sections/blog'
 
-const anchorPadding = 8;
 const Anchor = styled.div`
   display: block;
   position: relative;
   visibility: hidden;
 
   /* This matches the header heights! Plus padding for good measure */
-  ${snippets.topDistanceHeader({padding: anchorPadding, negative: true})}
+  top: -${rhythm(1)};
 `
 
 export default class IndexPage extends Component {
@@ -28,7 +27,8 @@ export default class IndexPage extends Component {
     super(props)
 
     this.state = {
-      section: Section.HOME
+      section: Section.HOME,
+      portfolioReversed: false
     }
   }
 
@@ -74,12 +74,15 @@ export default class IndexPage extends Component {
             }}
             onLeave={({ currentPosition }) => {
               if (currentPosition === 'above') {
-                this.setState({section: Section.PORTFOLIO})
+                this.setState({
+                  section: Section.PORTFOLIO,
+                  portfolioReversed: true
+                })
               }
             }}
           />
         </Anchor>
-        <Portfolio />
+        <Portfolio colorsReversed={this.state.portfolioReversed}/>
         <Anchor id="blog">
           <Waypoint
             onEnter={({ previousPosition }) => {

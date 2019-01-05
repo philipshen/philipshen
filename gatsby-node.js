@@ -2,6 +2,8 @@ const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 const experiences = require(`./src/data/career/experience`)
+const skills = require(`./src/data/career/skills`)
+const tools = require(`./src/data/career/tools`)
 
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
@@ -26,6 +28,30 @@ exports.createPages = ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/experience.js`),
       context: {
         experienceKey: key
+      }
+    })
+  })
+
+  // Create pages for skills
+  skills.forEach(skill => {
+    createPage({
+      path: `skill/${skill.key}`,
+      component: path.resolve(`./src/templates/skill.js`),
+      context: {
+        key: skill.key,
+        datasource: 'skills'
+      }
+    })
+  })
+
+  // Create pages for tools
+  tools.forEach(tool => {
+    createPage({
+      path: `tool/${tool.key}`,
+      component: path.resolve(`./src/templates/skill.js`),
+      context: {
+        key: tool.key,
+        datasource: 'tools'
       }
     })
   })

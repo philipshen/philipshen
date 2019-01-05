@@ -5,7 +5,8 @@ const ExperienceType = {
   PART_TIME: 1,
   SIDE_PROJECT: 2,
   VOLUNTEER: 3,
-  EDUCATION: 4
+  EDUCATION: 4,
+  AWARD: 5
 }
 
 const ExperienceTypeConfig = new Map([
@@ -28,6 +29,10 @@ const ExperienceTypeConfig = new Map([
   [ExperienceType.EDUCATION, {
     name: "Education",
     color: Color.cerulean,
+  }],
+  [ExperienceType.AWARD, {
+    name: "Award",
+    color: Color.olive
   }]
 ])
 

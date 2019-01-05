@@ -7,10 +7,18 @@ const Container = styled.div`
 `
 
 const Button = styled.div`
-  height: 32px;
-  width: 32px;
+  height: ${props => props.size ? `${props.size}px` : '32px'};
+  width: ${props => props.size ? `${props.size}px` : '32px'};
   margin-left: 12px;
   margin-right: 12px;
+
+  :first-child {
+    margin-left: 0;
+  }
+
+  :last-child {
+    margin-right: 0;
+  }
 `
 
 const contactButtons = [
@@ -28,7 +36,9 @@ class ContactButtons extends Component {
       <Container>
         {
           contactButtons.map((buttonInfo) => (
-            <Button key={buttonInfo.iconName}>
+            <Button
+              key={buttonInfo.iconName}
+            >
               <a href={buttonInfo.link}  target="_blank" rel="noopener noreferrer">
                 <Icon name={buttonInfo.iconName} viewBox={buttonInfo.iconName === 'email' ? '0 0 35 28' : '0 0 32 32'}/>
               </a>

@@ -1,5 +1,5 @@
 // Should just pull the tools from experiences... right? Right.
-import { SkillLevel } from '../../models/skill-level'
+const { SkillLevel } = require('../../models/skill-level')
 
 const tools = new Map([
   ["swift-ios", {
@@ -7,19 +7,19 @@ const tools = new Map([
     name: "Swift for iOS Development",
     level: SkillLevel.MASTER
   }],
-  ["typescript", {
-    key: "typescript",
-    name: "Typescript",
-    level: SkillLevel.MASTER
-  }],
   ["react-native", {
     key: "react-native",
     name: "React Native",
     level: SkillLevel.MASTER
   }],
-  ["jest", {
-    key: "jest",
-    name: "Jest",
+  ["typescript", {
+    key: "typescript",
+    name: "Typescript",
+    level: SkillLevel.ADVANCED
+  }],
+  ["javascript", {
+    key: "javascript",
+    name: "Javascript",
     level: SkillLevel.ADVANCED
   }],
   ["firebase", {
@@ -27,9 +27,24 @@ const tools = new Map([
     name: "Firebase",
     level: SkillLevel.ADVANCED
   }],
+  ["react", {
+    key: "react",
+    name: "React JS",
+    level: SkillLevel.ADVANCED
+  }],
+  ["jest", {
+    key: "jest",
+    name: "Jest",
+    level: SkillLevel.ADEPT
+  }],
   ["objc-ios", {
     key: "objc-ios",
     name: "Objective-C for iOS Development",
+    level: SkillLevel.ADEPT
+  }],
+  ["gatsby", {
+    key: "gatsby",
+    name: "Gatsby JS",
     level: SkillLevel.ADEPT
   }],
   ["metal", {
@@ -37,16 +52,6 @@ const tools = new Map([
     name: "Metal",
     level: SkillLevel.COMPETENT
   }],
-  ["react", {
-    key: "react",
-    name: "React JS",
-    level: SkillLevel.ADVANCED
-  }],
-  ["gatsby", {
-    key: "gatsby",
-    name: "Gatsby JS",
-    level: SkillLevel.ADEPT
-  }]
 ])
 
-export default tools
+module.exports = tools

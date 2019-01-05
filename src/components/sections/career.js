@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { rhythm } from '../../utils/typography'
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 
 import { Container, horizontalMargin } from './shared'
 import SkillBar from '../skill-bar'
@@ -107,11 +107,15 @@ export default class Career extends Component {
             <BarContainer>
               {
                 this.topSkills.map(skill => 
-                  <SkillBar key={skill.key} skill={skill} />
+                  <SkillBar
+                    key={skill.key}
+                    skill={skill}
+                    link={`/skill/${skill.key}`}
+                  />
                 )
               }
             </BarContainer>
-            <MoreLink>
+            <MoreLink to="/skills">
               <h5>
                 More Skills >
               </h5>
@@ -125,11 +129,15 @@ export default class Career extends Component {
             <BarContainer>
               {
                 this.topTools.map(tool => 
-                  <SkillBar key={tool.key} skill={tool} />
+                  <SkillBar
+                    key={tool.key}
+                    skill={tool}
+                    link={`/tool/${tool.key}`}
+                  />
                 )
               }
             </BarContainer>
-            <MoreLink>
+            <MoreLink to="/tools">
               <h5>
                 More Tools >
               </h5>

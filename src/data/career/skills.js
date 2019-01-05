@@ -1,4 +1,4 @@
-import { SkillLevel } from '../../models/skill-level'
+const { SkillLevel } = require('../../models/skill-level')
 
 const skills = new Map([
   ["ios-dev", {
@@ -17,9 +17,10 @@ const skills = new Map([
     level: SkillLevel.INTERMEDIATE
   }],
   ["backend", {
+    key: "backend",
     name: "Backend Web Development",
     level: SkillLevel.COMPETENT
   }]
 ])
 
-export default skills
+module.exports = skills

@@ -52,7 +52,6 @@ const MaskContainer = styled.div`
   svg {
     height: 0;
     width: 0;
-    zIndex: -10;
   }
 
   /* Need to (1) scale up to right size and (2) translate to center of container */
@@ -159,6 +158,7 @@ const DownArrow = styled(ChevronLeft)`
   right: 0;
   margin: auto;
   transform: rotate(-90deg);
+  cursor: pointer;
 
   ${media.computer`
     bottom: 2vh;
@@ -218,7 +218,12 @@ class Home extends Component {
                 <Title>Hi, I'm Phil</Title>
                 <Subtitle>I'm a programmer in the bay area.</Subtitle>
               </IntroContent>
-              <DownArrow className="downArrow" />
+              <DownArrow
+                className="downArrow"
+                onClick={() => {
+                  window.scrollTo(0, window.innerHeight)
+                }}
+              />
             </Container>
           )
         }}
