@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { rhythm } from '../../utils/typography'
-import { Link, navigate } from 'gatsby'
+import { Link } from 'gatsby'
 
 import { Container, horizontalMargin } from './shared'
 import SkillBar from '../skill-bar'

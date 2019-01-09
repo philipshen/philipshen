@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Layout from '../components/Layout'
+import Layout from '../components/layout'
 import styled from 'styled-components'
 import SkillBar from '../components/skill-bar'
 import { rhythm } from '../utils/typography'
