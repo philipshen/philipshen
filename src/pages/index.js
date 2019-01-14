@@ -82,12 +82,15 @@ export default class IndexPage extends Component {
             }}
           />
         </Anchor>
-        <Portfolio colorsReversed={this.state.portfolioReversed}/>
+        <Portfolio colorReversed={this.state.portfolioReversed}/>
         <Anchor id="blog">
           <Waypoint
             onEnter={({ previousPosition }) => {
               if (previousPosition === 'above') {
-                this.setState({section: Section.PORTFOLIO})
+                this.setState({
+                  section: Section.PORTFOLIO,
+                  portfolioReversed: true
+                })
               }
             }}
             onLeave={({ currentPosition }) => {

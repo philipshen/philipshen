@@ -17,6 +17,7 @@ module.exports = {
     type: ExperienceType.SIDE_PROJECT,
     title: "philipshen.com",
     start_date: new Date(2018, 11, 4),
+    end_date: new Date(2019, 1, 5),
     tools: ["gatsby", "react", "jest"],
     level: 3,
     description: `
@@ -30,6 +31,7 @@ module.exports = {
     title: "Coast",
     location: "Shenzhen, China",
     start_date: new Date(2018, 4, 1),
+    end_date: new Date(2019, 0, 10),
     tools: ["react-native", "typescript", "jest"],
     level: 2
   },

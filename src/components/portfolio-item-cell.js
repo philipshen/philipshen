@@ -29,6 +29,7 @@ const Image = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: center;
+  margin-bottom: ${rhythm(1)};
 
   cursor: pointer;
 

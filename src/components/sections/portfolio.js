@@ -25,20 +25,53 @@ const PortfolioList = styled.div`
 
 const ShowcaseContainer = styled.div`
   flex: 1;
-  background-color: lightcyan;
+  margin-left: 40px;
 
   ${media.handheld`
     display: none;
   `}
 `
 
-const Showcase = styled.div`
-  height: 80vh;
-  width: 100%;
-  flex: 1;
-  background-color: ${Color.magenta_pink};
-  border-radius: 8px;
-`
+// const Showcase = styled.div`
+//   height: 80vh;
+//   width: 100%;
+//   flex: 1;
+//   background-color: ${Color.magenta_pink};
+//   border-radius: 8px;
+//   padding-top: ${rhythm(1)};
+//   padding-left: 16px;
+//   padding-right: 16px;
+// `
+
+// const ShowcaseTitleContainer = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin-bottom: ${rhythm(1/2)};
+
+//   h2 {
+//     color: white;
+//     margin-bottom: 0;
+//   }
+// `
+
+// const ShowcaseDate = styled.h4`
+//   font-weight: normal;
+//   color: white;
+//   margin-bottom: 0;
+// `
+
+// const ShowcaseDescription = styled.p`
+//   color: white;
+//   font-size: ${rhythm(7/8)};
+//   line-height: ${rhythm(5/4)};
+// `
+
+// const ShowcaseFooting = styled.h6`
+//   font-weight: normal;
+//   color: white;
+//   opacity: 0.8;
+// `
 
 const Title = styled.h1`
   margin-bottom: ${rhythm(1/2)} !important;
@@ -51,6 +84,7 @@ const Subtitle = styled.h5`
 
 const ButtonsContainer = styled.div`
   display: flex;
+  margin-bottom: ${rhythm(1/2)};
 `
 
 const Button = styled.h5`
@@ -68,13 +102,17 @@ const Button = styled.h5`
   cursor: pointer;
 `
 
+const PortfolioContainer = styled(Container)`
+  /* Use the colorReversed prop here to reverse the colors! */
+`
+
 export default class Portfolio extends Component {
 
   render() {
     console.log(this.props.colorReversed)
 
     return (
-      <Container>
+      <PortfolioContainer colorReversed={this.props.colorReversed}>
         <Title>Portfolio</Title>
         <Subtitle>
           Here's a little gallery for me to showcase my work...projects completed, art made, all that stuff.
@@ -98,10 +136,23 @@ export default class Portfolio extends Component {
             </PortfolioList>
           </LeftContent>
           <ShowcaseContainer>
-            <Showcase></Showcase>
+            {/* <Showcase>
+              <ShowcaseTitleContainer>
+                <h2>Hello There</h2>
+                <ShowcaseDate>
+                  October 12, 2018
+                </ShowcaseDate>
+              </ShowcaseTitleContainer>
+              <ShowcaseDescription>
+                This website! I made it with Loren Epsom dolor sit amen, connector apidigind in vilpitate varies posture. Cras sit amen bible bel bel eros. His premium feels nigh. Subsendisse Nic
+              </ShowcaseDescription>
+              <ShowcaseFooting>
+                Skills: React, GatsbyJS, Jest
+              </ShowcaseFooting>
+            </Showcase> */}
           </ShowcaseContainer>
         </Content>
-      </Container>
+      </PortfolioContainer>
     )
   }
 
