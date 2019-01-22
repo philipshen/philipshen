@@ -204,3 +204,52 @@ This chapter is all about speaking persuasively and not abraisively.
 - Encourage testing
 
 The first three skills describe *what* to do. The last two tell *how* to do it.
+
+**Always be vigilant for safety problems**. If people start becoming defensive or appear to be insulted, step out of hte conversation and rebuild safety by *contrasting*.
+
+> When you encourage others to share their paths, how you phrase your invitation makes a big difference. Not only should you invite others to talk, but you have to do so in a way that makes it clear that no matter how controversial their ideas might be, you want to hear them.
+
+## Chapter 8: Explore Others' Paths
+
+> You'll never work through your differences until all parties freely add to the pool of meaning... and while it's true that you can't force others to dialogue, you can take steps to make it safer for them to do so. After all, that's why they've sought the security of silence or violence in the first place. They're afraid that dialogue will make them vulnerable.
+
+Here's some things you can do:
+- Encourage others to retrace their path
+- Ask to get things rolling. "What do you mean? I'd like to hear your concerns"
+- Mirror to confirm feelings. "Really, you're fine? From the way you're saying that, it doesn't sound like you are."
+- Paraphrase to acknowledge the story. "Let's see if I've got this right..."
+- Prime when you're getting nowhere. Offer your best guess at what the other person is thinking or feeling.
+
+### Remember your ABCs!
+
+#### Agree
+
+Don't turn an agreement into an argument.  that happens all the time. Get to the heart of the issue, and then find agreement, and then move on.
+
+#### Build
+
+If you agree with what has been said but the information is incomplete. build. Point out areas of agreement, and then add elements that were left out of the discussion.
+
+#### Compare
+
+If you do disagree, compare your path with the other person's. Rather than suggesting that he or she is wrong, suggest that you differ.
+
+## Chapter 9: Move to Action
+
+Once you have meaning in the pool, you must act on it! This sometimes does not happen because:
+- You have unclear expectations about how decisions will be made.
+- You do a poor job of acting on the decisions that were made
+
+> The two riskiest times in crucial conversations tend to be at the beginning and at the end. The beginning is risky because you have to find a way to create safety or else things go awry. The end is dicey because if you aren't careful about how you clarify the conclusion and decisions flowing from your Pool of Shared Meaning, you can run into violated expectations later on.
+
+You must **decide how to decide**. Separate dialogue from decision making. Make it clear how decisions will be made––who will be involved and why.
+
+## Chapter 10: Yeah But
+
+This chapter is full of tough cases. There's some good snippets in here. The key is that you won't always agree, and people won't always have even a little sliver of reason in them. Just stick to the game plan and stay honest with yourself and others; that's the best you can do.
+
+## Chapter 11: Putting it All Together
+
+There are two levers for positive change:
+1. **Learn to Look**. People who improve their dialogue skills continually ask themselves whether they're in or out of dialogue.
+2. **Make it Safe**. Dialogue consists of the free flow of meaning, and the number one flow stopper is lack of safety.
