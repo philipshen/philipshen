@@ -31,7 +31,7 @@ const qAndA = {
   "Who made this site?": "Phil",
   "How is this site so dang fast?": `This site is powered by ${makeLink('gatsbyjs.org', 'Gatsby')}!`,
   "How does this site look so nice?": `This site was made with the help of ${makeLink('styled-components.com', 'styled-components')} and ${makeLink('material-ui.com/style/icons/', 'Material Icons')}`,
-  "Why does this site seem unfinished?": `Because it is. I got a bit busy, and functionally it does what I need it to, so I decided to put it on hold for a while.`
+  "Why does this site seem unfinished?": `Because it is. I got a bit busy, and functionally it did what I need it to, so I decided to put it on hold for a while.`
 }
 
 function makeLink(url, text) {

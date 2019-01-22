@@ -17,7 +17,7 @@ module.exports = {
     type: ExperienceType.SIDE_PROJECT,
     title: "philipshen.com",
     start_date: new Date(2018, 11, 4),
-    end_date: new Date(2019, 1, 5),
+    end_date: new Date(2019, 0, 5),
     tools: ["gatsby", "react", "jest"],
     level: 3,
     description: `

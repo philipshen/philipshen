@@ -31,6 +31,10 @@ export default class IndexPage extends Component {
       portfolioReversed: false
     }
   }
+  
+  componentDidMount() {
+    console.log(window.location.href)
+  }
 
   render() {
     /*
