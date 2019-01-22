@@ -1,5 +1,4 @@
 module.exports = {
-  pathPrefix: `/philipshen`, // Needed for Gitlab pages' custom URL. Eventually, w/ custom URL, remove this
   siteMetadata: {
     title: 'Philip Shen',
   },
